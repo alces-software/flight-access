@@ -6,26 +6,82 @@
  * All rights reserved, see LICENSE.txt.
  *===========================================================================*/
 import React from 'react';
-// import styled from 'styled-components';
-// import { Container, Row, Col } from 'reactstrap';
 import { compose } from 'recompose';
-// import { PageHeading } from 'flight-reactware';
+import { Container, Row, Col } from 'reactstrap';
 
-// import metrics from '../data/metrics';
-
-// const PackContainer = styled(Container)`
-//   padding: 0 30px 15px 30px;
-// `;
+import { loadOneGraph, loadFiveGraph, metrics } from '../data/cluster_1';
+import LineChart from '../components/LineChart';
+import BarChart from '../components/BarChart';
+import ReLineChart from '../components/ReLineChart';
+import ReBarChart from '../components/ReBarChart';
 
 const GraphPage = () => {
   return (
-    <div>
-      XXX Place graph here.
-    </div>
+    <Container fluid >
+      <Row>
+        <Col>
+          <LineChart
+            data={metrics}
+            graph={loadOneGraph}
+          />
+        </Col>
+        <Col>
+          <ReLineChart
+            data={metrics}
+            graph={loadOneGraph}
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <LineChart
+            data={metrics}
+            graph={loadFiveGraph}
+          />
+        </Col>
+        <Col>
+          <ReLineChart
+            data={metrics}
+            graph={loadFiveGraph}
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <BarChart
+            data={metrics}
+            graph={loadOneGraph}
+          />
+        </Col>
+        <Col>
+          <ReBarChart
+            data={metrics}
+            graph={loadOneGraph}
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <BarChart
+            data={metrics}
+            graph={loadFiveGraph}
+          />
+        </Col>
+        <Col>
+          <ReBarChart
+            data={metrics}
+            graph={loadFiveGraph}
+          />
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
 GraphPage.propTypes = {
+};
+
+GraphPage.defaultProps = {
 };
 
 const enhance = compose(
