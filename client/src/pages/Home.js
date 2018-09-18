@@ -10,12 +10,13 @@ import {
   LinkContainer,
   PageHeading,
   Section,
+  SectionIcon,
   makeSection,
 } from 'flight-reactware';
 import FontAwesome from 'react-fontawesome';
 
 import CommunitySiteLink from '../elements/CommunitySiteLink';
-import ContextLink from '../elements/ContextLink';
+// import ContextLink from '../elements/ContextLink';
 import DocsSiteLink from '../elements/DocsSiteLink';
 
 const sections = {
@@ -53,47 +54,59 @@ const Home = () => {
     <div>
       <Container fluid>
         <PageHeading
-          overview="This service has been developed to facilitate aquiring a
-          fully managed High Performance Computing (HPC) cluster."
+          overview="This service has been developed to help you understand the
+          performance characteristics of your High Performance Computing (HPC)
+          clusters."
           sections={Object.values(sections)}
           title="Welcome to the Alces Flight Access."
         />
       </Container>
       <Container>
         <Section
-          overview="The Alces Flight Access service allows you to purchase
-          fully managed Alces Flight HPC clusters complete with comprehensive
-          support."
+          overview="The Alces Flight Access service allows you to view and
+          compare the performance characteristics of your High Performance
+          Computing (HPC) clusters."
           section={sections.whatIsIt}
           title="What is Alces Flight Access?"
         >
           <Row>
             <Col>
+              <SectionIcon name="area-chart" />
+              <h4>
+                Which cluster is quietest?
+              </h4>
               <p>
-                Select the HPC cluster pack you want, enter your credit card
-                details and cluster name and you are ready to go!
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In a
+                libero sed odio fermentum fringilla ornare vel urna. Class
+                aptent taciti sociosqu ad litora torquent per conubia nostra,
+                per inceptos himenaeos. Aenean bibendum gravida nunc, at
+                tempus neque. Vestibulum vel purus sapien. Quisque eget elit
+                efficitur, condimentum mauris id, facilisis leo. Duis aliquet
+                facilisis mauris, quis imperdiet risus consequat sit amet.
+                Nunc quis dolor ac urna pulvinar vestibulum sed eu dolor.
+                Donec at laoreet neque. Interdum et malesuada fames ac ante
+                ipsum primis in faucibus. Pellentesque habitant morbi
+                tristique senectus et netus et malesuada fames ac turpis
+                egestas.
               </p>
+            </Col>
+            <Col>
+              <SectionIcon name="bar-chart" />
+              <h4>
+                Which days are quietest?
+              </h4>
               <p>
-                Your cluster will be built by our experienced engineering team
-                in a Virtual Private Cluster (VPC) environment for security,
-                with SSH and graphical-desktop connectivity for users.  Data
-                management tools for POSIX and S3 object storage are also
-                included to help users transfer files and manage storage
-                resources.
-              </p>
-              <p>
-                Your cluster will be fully managed by Alces using the {' '}
-                <ContextLink
-                  linkSite="Center"
-                  location="/"
-                >
-                  Alces Flight Center
-                </ContextLink>
-                {' '} service.  Where you will be able to
-                view the dozens of daily checks our engineering team will
-                perform to ensure the health of your cluster request support
-                and advice and access the comprehensive support logs for your
-                cluster.
+                Nam odio lacus, pharetra sed nunc quis, pharetra varius elit.
+                Nullam gravida eros metus, at volutpat dolor rutrum quis. Nam
+                convallis velit et elit lacinia porta. Maecenas auctor
+                pellentesque iaculis. Praesent commodo tempus euismod.
+                Maecenas rutrum justo nibh, id accumsan leo tempor facilisis.
+                Mauris rhoncus enim sit amet lorem interdum consectetur.
+                Praesent sodales est facilisis, mollis sapien eu, tincidunt
+                eros. Nunc ut massa tincidunt, commodo massa id, feugiat
+                magna. Morbi pretium vehicula augue eu cursus. Ut non mauris
+                sed est commodo tincidunt.  Nulla facilisi. Pellentesque
+                rutrum porttitor feugiat. Morbi laoreet gravida varius.
               </p>
             </Col>
           </Row>
@@ -103,7 +116,7 @@ const Home = () => {
                 icon="play-circle"
                 to="/access"
               >
-                Purchase a cluster pack
+                View your clusters
               </CallToAction>
             </Col>
           </Row>
