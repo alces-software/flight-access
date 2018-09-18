@@ -73,7 +73,7 @@ const Home = () => {
             <Col>
               <SectionIcon name="area-chart" />
               <h4>
-                Which cluster is quietest?
+                Identify which cluster is quietest?
               </h4>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. In a
@@ -93,7 +93,7 @@ const Home = () => {
             <Col>
               <SectionIcon name="bar-chart" />
               <h4>
-                Which days are quietest?
+                Discover which days are quietest?
               </h4>
               <p>
                 Nam odio lacus, pharetra sed nunc quis, pharetra varius elit.

@@ -6,7 +6,7 @@ import App from './components/App';
 import Home from './pages/Home';
 import Page from './components/Page';
 import licenseData from './data/licenses.json';
-// import { access } from './modules';
+import { metrics } from './modules';
 
 const metaPages = makeMetaPages(Page, {
   softwareLicenses: licenseData,
@@ -41,12 +41,12 @@ const routes = [
     component: App,
     routes: [
       ...metaPageRouteConfigs,
-      // {
-      //   path: '/access',
-      //   exact: true,
-      //   component: access.pages.Access,
-      //   title: 'Access',
-      // },
+      {
+        path: '/metrics',
+        exact: true,
+        component: metrics.pages.Graph,
+        title: 'Metrics',
+      },
       {
         path: '/',
         exact: true,
