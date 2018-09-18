@@ -4,7 +4,6 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :username,  limit: 255, null: false
       t.string :email,     limit: 255, null: false
       t.uuid :flight_id,   null: false
-      t.string :stripe_id, limit: 255
 
       t.timestamps
     end

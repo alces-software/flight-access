@@ -1,5 +1,5 @@
 {
-  "name": "flight-store-client",
+  "name": "flight-access-client",
   "version": "0.1.0",
   "private": true,
   "author": "Alces Flight Limited",
@@ -26,7 +26,6 @@
     "react-router-config": "^1.0.0-beta.3",
     "react-router-dom": "^4.1.1",
     "react-router-redux": "next",
-    "react-stripe-elements": "^2.0.1",
     "react-transition-group": "^1.2.0",
     "reactstrap": "5.0.0-beta",
     "recompose": "^0.24.0",
@@ -60,7 +59,7 @@
     "webpack": "^3.0.0"
   },
   "scripts": {
-    "start": "PORT=3008 node scripts/customized-config start",
+    "start": "PORT=3009 node scripts/customized-config start",
     "build": "node scripts/customized-config build && NODE_ENV=production webpack --config config/webpack.server.config.js",
     "build:client": "node scripts/customized-config build",
     "build:server": "NODE_ENV=production webpack --config config/webpack.server.config.js",

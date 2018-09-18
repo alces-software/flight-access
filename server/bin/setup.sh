@@ -3,7 +3,7 @@
 #==============================================================================
 # Copyright (C) 2018 Stephen F. Norledge and Alces Flight Ltd.
 #
-# This file is part of Alces Store.
+# This file is part of Alces Access.
 #
 # All rights reserved, see LICENSE.txt.
 #==============================================================================
@@ -43,10 +43,10 @@ setup() {
     "${SERVER_ROOT}"/bin/install-gems ${install_gems_args[@]}
 
     header "Setting up database"
-    docker-compose run --rm store-api rake db:setup  | indent
+    docker-compose run --rm access-api rake db:setup  | indent
 
     header "Starting docker containers"
-    docker-compose up store-api 2> >(indent 1>&2) | indent
+    docker-compose up access-api 2> >(indent 1>&2) | indent
 
     # Make sure the prompt isn't indented.
     echo

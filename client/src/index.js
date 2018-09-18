@@ -7,7 +7,6 @@ import { Provider } from 'react-redux';
 import { createCookieMiddleware } from 'redux-cookie';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { renderRoutes } from 'react-router-config';
-import { StripeProvider } from 'react-stripe-elements';
 import { Analytics } from 'flight-reactware';
 
 import middleware from './middleware';
@@ -48,9 +47,7 @@ ReactDOM.render(
   <Provider store={store}>
     { /* ConnectedRouter will use the store from Provider automatically */ }
     <ConnectedRouter history={history}>
-      <StripeProvider apiKey={process.env.REACT_APP_STRIPE_API_KEY}>
-        {renderRoutes(routes)}
-      </StripeProvider>
+      {renderRoutes(routes)}
     </ConnectedRouter>
   </Provider>,
   document.getElementById('root')

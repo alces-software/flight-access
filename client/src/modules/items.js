@@ -8,6 +8,6 @@ const currentSite = process.env.REACT_APP_SITE;
 export default function() {
   return [
     makeItem('Overview', 'home', makeLink(currentSite, '/')),
-    makeItem('Store', 'briefcase', makeLink(currentSite, '/store')),
+    makeItem('Access', 'briefcase', makeLink(currentSite, '/access')),
   ];
 }

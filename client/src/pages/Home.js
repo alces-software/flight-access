@@ -19,7 +19,7 @@ import ContextLink from '../elements/ContextLink';
 import DocsSiteLink from '../elements/DocsSiteLink';
 
 const sections = {
-  whatIsIt: makeSection('What is Flight Store?', 'what-is-it', 'pink', 'question'),
+  whatIsIt: makeSection('What is Flight Access?', 'what-is-it', 'pink', 'question'),
   moreInfo: makeSection('Getting more information', 'more-information', 'blue', 'book'),
 };
 
@@ -56,16 +56,16 @@ const Home = () => {
           overview="This service has been developed to facilitate aquiring a
           fully managed High Performance Computing (HPC) cluster."
           sections={Object.values(sections)}
-          title="Welcome to the Alces Flight Store."
+          title="Welcome to the Alces Flight Access."
         />
       </Container>
       <Container>
         <Section
-          overview="The Alces Flight Store service allows you to purchase
+          overview="The Alces Flight Access service allows you to purchase
           fully managed Alces Flight HPC clusters complete with comprehensive
           support."
           section={sections.whatIsIt}
-          title="What is Alces Flight Store?"
+          title="What is Alces Flight Access?"
         >
           <Row>
             <Col>
@@ -101,7 +101,7 @@ const Home = () => {
             <Col className="d-flex justify-content-center">
               <CallToAction
                 icon="play-circle"
-                to="/store"
+                to="/access"
               >
                 Purchase a cluster pack
               </CallToAction>

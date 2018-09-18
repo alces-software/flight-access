@@ -1,9 +1,9 @@
 version: '2'
 services:
-  store-api:
-    container_name: store-api
+  access-api:
+    container_name: access-api
     network_mode: "bridge"
-    image: store-api
+    image: access-api
     build:
       context: .
       args:
