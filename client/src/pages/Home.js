@@ -114,7 +114,7 @@ const Home = () => {
             <Col className="d-flex justify-content-center">
               <CallToAction
                 icon="play-circle"
-                to="/access"
+                to="/metrics"
               >
                 View your clusters
               </CallToAction>
