@@ -5,54 +5,56 @@
  *
  * All rights reserved, see LICENSE.txt.
  *===========================================================================*/
+import PropTypes from 'prop-types';
 import React from 'react';
-import { compose } from 'recompose';
-import { BarChart as D3BarChart } from 'react-d3-basic';
+import {
+  Bar,
+  BarChart as BaseBarChart,
+  CartesianGrid,
+  Legend,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from 'recharts';
 
-const xValueGenerators = {
-  timestampToHoursAndMinutes: (d) => {
-    // XXX Can't get this working correctly.  What gives?
-    return d.timestamp;
-  },
-};
+import * as timeFormatters from '../utils/timeFormatters';
 
-const BarChart = ({
-  /* eslint-disable react/prop-types */
-  data,
-  graph,
-  height,
-  margins,
-  width,
-  /* eslint-enable react/prop-types */
-}) => {
+const BarChart = ({ data, graph }) => {
+  const bars = graph.chartSeries.map((series) => (
+    <Bar
+      dataKey={series.field}
+      fill={series.color}
+      key={series.field}
+      name={series.name}
+    />
+  ));
+
   return (
-    <div>
-      <D3BarChart
-        chartSeries={graph.chartSeries}
-        data={data}
-        height={height}
-        margins={margins}
-        showXGrid={false}
-        showYGrid={false}
-        title={graph.title}
-        width={width}
-        x={xValueGenerators[graph.xAxisFormatter]}
-        xScale="ordinal"
-      />
-    </div>
+    <BaseBarChart
+      data={data}
+      height={300}
+      margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+      width={600}
+    >
+      <XAxis dataKey={timeFormatters[graph.xAxisFormatter]} />
+      <YAxis />
+      <CartesianGrid strokeDasharray="3 3" />
+      <Tooltip />
+      <Legend />
+      {bars}
+    </BaseBarChart>
   );
 };
 
 BarChart.propTypes = {
+  data: PropTypes.array.isRequired,
+  graph: PropTypes.shape({
+    chartSeries: PropTypes.arrayOf(PropTypes.shape({
+      color: PropTypes.string,
+      field: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+    })).isRequired,
+  }).isRequired,
 };
 
-BarChart.defaultProps = {
-  width: 700,
-  height: 300,
-  margins: { left: 100, right: 100, top: 50, bottom: 50 },
-};
-
-const enhance = compose(
-);
-
-export default enhance(BarChart);
+export default BarChart;
