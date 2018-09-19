@@ -9,12 +9,14 @@
 // Import and export the public facing API for the session module.
 
 import * as constants from './constants';
+import * as components from './components';
 import * as pages from './pages';
 import * as selectors from './selectors';
 import reducer from './reducer';
 
 export default {
   constants,
+  ...components,
   pages,
   reducer,
   selectors,

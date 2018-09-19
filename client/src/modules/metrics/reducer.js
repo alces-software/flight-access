@@ -3,7 +3,7 @@ import {
 } from './actionTypes';
 
 const initialState = {
-  selectedGraph: null,
+  selectedGraphId: null,
 };
 
 function reducer(state=initialState, { type, payload }) {
@@ -11,7 +11,7 @@ function reducer(state=initialState, { type, payload }) {
     case GRAPH_SELECTED:
       return {
         ...state,
-        selectedGraph: payload,
+        selectedGraphId: payload,
       };
 
     default:

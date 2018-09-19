@@ -1,11 +1,13 @@
 import { createSelector } from 'reselect';
 
 import { NAME } from './constants';
+import * as graphs from './data/graphs';
 
 const metricsState = (state) => state[NAME];
+const selectedGraphId = (state) => metricsState(state).selectedGraphId;
 
 export const selectedGraph = createSelector(
-  metricsState,
+  selectedGraphId,
 
-  (s) => s.selectedGraph,
+  (id) => id == null ? null : graphs[id],
 );
