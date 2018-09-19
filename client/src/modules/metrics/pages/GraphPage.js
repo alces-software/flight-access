@@ -5,44 +5,33 @@
  *
  * All rights reserved, see LICENSE.txt.
  *===========================================================================*/
+import PropTypes from 'prop-types';
 import React from 'react';
-import { compose } from 'recompose';
+import { compose, mapProps } from 'recompose';
 import { Container, Row, Col } from 'reactstrap';
+import { withRouter } from 'react-router';
 
-import { loadOneGraph, loadFiveGraph, metrics } from '../data/cluster_1';
+import * as graphs from '../data/graphs';
+import { metrics } from '../data/cluster_1';
 import LineChart from '../components/LineChart';
 import BarChart from '../components/BarChart';
 import ReLineChart from '../components/ReLineChart';
 import ReBarChart from '../components/ReBarChart';
 
-const GraphPage = () => {
+const GraphPage = ({ graph }) => {
   return (
     <Container fluid >
       <Row>
         <Col>
           <LineChart
             data={metrics}
-            graph={loadOneGraph}
+            graph={graph}
           />
         </Col>
         <Col>
           <ReLineChart
             data={metrics}
-            graph={loadOneGraph}
-          />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <LineChart
-            data={metrics}
-            graph={loadFiveGraph}
-          />
-        </Col>
-        <Col>
-          <ReLineChart
-            data={metrics}
-            graph={loadFiveGraph}
+            graph={graph}
           />
         </Col>
       </Row>
@@ -50,27 +39,13 @@ const GraphPage = () => {
         <Col>
           <BarChart
             data={metrics}
-            graph={loadOneGraph}
+            graph={graph}
           />
         </Col>
         <Col>
           <ReBarChart
             data={metrics}
-            graph={loadOneGraph}
-          />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <BarChart
-            data={metrics}
-            graph={loadFiveGraph}
-          />
-        </Col>
-        <Col>
-          <ReBarChart
-            data={metrics}
-            graph={loadFiveGraph}
+            graph={graph}
           />
         </Col>
       </Row>
@@ -79,12 +54,21 @@ const GraphPage = () => {
 };
 
 GraphPage.propTypes = {
+  graph: PropTypes.object.isRequired,
 };
 
 GraphPage.defaultProps = {
 };
 
 const enhance = compose(
+  withRouter,
+
+  mapProps(({ match }) => {
+    const graphId = match.params.graph;
+    return {
+      graph: graphs[graphId],
+    };
+  }),
 );
 
 export default enhance(GraphPage);

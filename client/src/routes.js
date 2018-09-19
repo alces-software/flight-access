@@ -44,8 +44,14 @@ const routes = [
       {
         path: '/metrics',
         exact: true,
-        component: metrics.pages.Graph,
+        component: metrics.pages.Selection,
         title: 'Metrics',
+      },
+      {
+        path: '/metrics/:graph',
+        exact: true,
+        component: metrics.pages.Graph,
+        title: 'Metric',
       },
       {
         path: '/',

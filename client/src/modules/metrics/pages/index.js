@@ -10,5 +10,9 @@
 // Any pages which are intended to only be used internally to this module
 // should not be included here.
 import Graph from './GraphPage';
+import Selection from './SelectionPage';
 
-export { Graph };
+export {
+  Graph,
+  Selection,
+};
