@@ -5,6 +5,7 @@
  *
  * All rights reserved, see LICENSE.txt.
  *===========================================================================*/
+import PropTypes from 'prop-types';
 import React from 'react';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend
@@ -12,31 +13,42 @@ import {
 
 import * as timeFormatters from '../utils/timeFormatters';
 
-// eslint-disable-next-line react/prop-types
-const ReBarChart = ({ data, graph }) => (
-  <BarChart
-    data={data}
-    height={300}
-    margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-    width={600}
-  >
-    <CartesianGrid strokeDasharray="3 3" />
-    <XAxis dataKey={timeFormatters[graph.xAxisFormatter]} />
-    <YAxis />
-    <Tooltip />
-    <Legend />
+const ReBarChart = ({ data, graph }) => {
+  const bars = graph.chartSeries.map((series) => (
     <Bar
-      dataKey={graph.chartSeries[0].field}
-      fill="#8884d8"
-      name={graph.chartSeries[0].name}
+      dataKey={series.field}
+      fill={series.color}
+      key={series.field}
+      name={series.name}
     />
-    {/*
-    <Bar
-      dataKey="uv"
-      fill="#82ca9d"
-    />
-    */}
-  </BarChart>
-);
+  ));
+
+  return (
+    <BarChart
+      data={data}
+      height={300}
+      margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+      width={600}
+    >
+      <XAxis dataKey={timeFormatters[graph.xAxisFormatter]} />
+      <YAxis />
+      <CartesianGrid strokeDasharray="3 3" />
+      <Tooltip />
+      <Legend />
+      {bars}
+    </BarChart>
+  );
+};
+
+ReBarChart.propTypes = {
+  data: PropTypes.array.isRequired,
+  graph: PropTypes.shape({
+    chartSeries: PropTypes.arrayOf(PropTypes.shape({
+      color: PropTypes.string,
+      field: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+    })).isRequired,
+  }).isRequired,
+};
 
 export default ReBarChart;

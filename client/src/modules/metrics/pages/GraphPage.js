@@ -10,6 +10,7 @@ import React from 'react';
 import { compose, mapProps } from 'recompose';
 import { Container, Row, Col } from 'reactstrap';
 import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import * as graphs from '../data/graphs';
 import { metrics } from '../data/cluster_1';
@@ -18,32 +19,28 @@ import BarChart from '../components/BarChart';
 import ReLineChart from '../components/ReLineChart';
 import ReBarChart from '../components/ReBarChart';
 
+const graphTypes = {
+  bar: BarChart,
+  line: LineChart,
+  rebar: ReBarChart,
+  reline: ReLineChart,
+};
+
 const GraphPage = ({ graph }) => {
+  if (graph == null) {
+    return (
+      <div>
+        Graph not found
+        <Link to="/metrics">Go back</Link>
+      </div>
+    );
+  }
+  const GraphComponent = graphTypes[graph.type];
   return (
     <Container fluid >
       <Row>
         <Col>
-          <LineChart
-            data={metrics}
-            graph={graph}
-          />
-        </Col>
-        <Col>
-          <ReLineChart
-            data={metrics}
-            graph={graph}
-          />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <BarChart
-            data={metrics}
-            graph={graph}
-          />
-        </Col>
-        <Col>
-          <ReBarChart
+          <GraphComponent
             data={metrics}
             graph={graph}
           />

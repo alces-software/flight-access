@@ -10,7 +10,8 @@ import { compose } from 'recompose';
 import { LineChart as D3LineChart } from 'react-d3-basic';
 
 const xValueGenerators = {
-  timestampToDate: (d) => {
+  timestampToHoursAndMinutes: (d) => {
+    // XXX Can't get this working correctly.  What gives?
     return d.timestamp;
   },
 };
@@ -35,7 +36,7 @@ const LineChart = ({
         showYGrid={false}
         title={graph.title}
         width={width}
-        x={xValueGenerators[graph.xAccessor]}
+        x={xValueGenerators[graph.xAxisFormatter]}
         // xScale="time"
       />
     </div>

@@ -17,14 +17,25 @@ import * as graphs from '../data/graphs';
 let Option = ({ dispatch, graph }) => (
   <div
     onClick={() => dispatch(push(`/metrics/${graph.id}`))}
-    style={{ height: '150px', width: '150px', border: '1px solid black' }}
+    style={{ border: '1px solid black' }}
   >
-    {graph.title}
-    <button
-      onClick={() => dispatch(push(`/metrics/${graph.id}`))}
-    >
-      View
-    </button>
+    <div>
+      <h4>
+        {graph.title}
+      </h4>
+    </div>
+    <div>
+      <h6>
+        {graph.subtitle}
+      </h6>
+    </div>
+    <div>
+      <button
+        onClick={() => dispatch(push(`/metrics/${graph.id}`))}
+      >
+        View
+      </button>
+    </div>
   </div>
 );
 Option.propTypes = {

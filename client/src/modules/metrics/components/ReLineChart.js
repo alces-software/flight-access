@@ -5,6 +5,7 @@
  *
  * All rights reserved, see LICENSE.txt.
  *===========================================================================*/
+import PropTypes from 'prop-types';
 import React from 'react';
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend
@@ -12,35 +13,44 @@ import {
 
 import * as timeFormatters from '../utils/timeFormatters';
 
-// eslint-disable-next-line react/prop-types
-const ReLineChart = ({ data, graph }) => (
-  <LineChart
-    data={data}
-    height={300}
-    margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-    width={600}
-  >
-    <XAxis dataKey={timeFormatters[graph.xAxisFormatter]} />
-    <YAxis />
-    <CartesianGrid strokeDasharray="3 3" />
-    <Tooltip />
-    <Legend />
+const ReLineChart = ({ data, graph }) => {
+  const lines = graph.chartSeries.map((series) => (
     <Line
-      activeDot={{ r: 8 }}
-      dataKey={graph.chartSeries[0].field}
+      dataKey={series.field}
       dot={false}
-      name={graph.chartSeries[0].name}
-      stroke="#8884d8"
+      key={series.field}
+      name={series.name}
+      stroke={series.color}
       type="monotone"
     />
-    {/*
-    <Line
-      dataKey="uv"
-      stroke="#82ca9d"
-      type="monotone"
-    />
-    */}
-  </LineChart>
-);
+  ));
+
+  return (
+    <LineChart
+      data={data}
+      height={300}
+      margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+      width={600}
+    >
+      <XAxis dataKey={timeFormatters[graph.xAxisFormatter]} />
+      <YAxis />
+      <CartesianGrid strokeDasharray="3 3" />
+      <Tooltip />
+      <Legend />
+      {lines}
+    </LineChart>
+  );
+};
+
+ReLineChart.propTypes = {
+  data: PropTypes.array.isRequired,
+  graph: PropTypes.shape({
+    chartSeries: PropTypes.arrayOf(PropTypes.shape({
+      color: PropTypes.string,
+      field: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+    })).isRequired,
+  }).isRequired,
+};
 
 export default ReLineChart;
