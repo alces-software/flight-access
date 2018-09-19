@@ -5,67 +5,46 @@
  *
  * All rights reserved, see LICENSE.txt.
  *===========================================================================*/
-import PropTypes from 'prop-types';
 import React from 'react';
-import { push } from 'react-router-redux';
-import { compose } from 'recompose';
+import styled from 'styled-components';
 import { Container, Row, Col } from 'reactstrap';
-import { connect } from 'react-redux';
+import { compose } from 'recompose';
 
 import * as graphs from '../data/graphs';
+import GraphSelectionOption from '../components/GraphSelectionOption';
 
-let Option = ({ dispatch, graph }) => {
-  const onClick = () => dispatch(push(`/metrics/${graph.id}`));
+const EqualHeightRow = styled(Row)`
+  display: flex;
+  flex-wrap: wrap;
+  & > [class*='col-'] {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 6px;
+  }
 
-  return (
-    <div
-      onClick={onClick}
-      style={{ border: '1px solid black' }}
-    >
-      <div>
-        <h4>
-          {graph.title}
-        </h4>
-      </div>
-      <div>
-        <h6>
-          {graph.subtitle}
-        </h6>
-      </div>
-      <div>
-        <button
-          onClick={onClick}
-        >
-          View
-        </button>
-      </div>
-    </div>
-  );
-};
-
-Option.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  graph: PropTypes.shape({
-    title: PropTypes.node.isRequired,
-  }).isRequired,
-};
-Option = connect()(Option);
+  .card {
+      flex: 1;
+  }
+`;
 
 const SelectionPage = () => {
   const options = Object.keys(graphs).map(graphId => {
     const graph = graphs[graphId];
     return (
-      <Col key={graph.id}>
-        <Option graph={graph} />
+      <Col
+        key={graph.id}
+        md={4}
+      >
+        <GraphSelectionOption graph={graph} />
       </Col>
     );
   });
 
   return (
     <Container fluid >
-      <Row>
+      <EqualHeightRow>
         {options}
-      </Row>
+      </EqualHeightRow>
     </Container>
   );
 };
