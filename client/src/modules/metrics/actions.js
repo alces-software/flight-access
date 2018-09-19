@@ -6,3 +6,10 @@ export function graphSelected(graphId) {
     payload: graphId,
   };
 }
+
+export function graphDeselected(graphId) {
+  return {
+    type: actionTypes.GRAPH_SELECTED,
+    payload: null,
+  };
+}

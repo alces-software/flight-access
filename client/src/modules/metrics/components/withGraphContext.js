@@ -19,7 +19,7 @@ export default function withGraphContext() {
     lifecycle({
       componentDidMount: function componentDidMount() {
         const { dispatch, graphId } = this.props;
-        dispatch(actions.graphSelected(graphId,));
+        dispatch(actions.graphSelected(graphId));
       },
 
       componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
@@ -30,7 +30,12 @@ export default function withGraphContext() {
           return;
         }
         this.props.dispatch(actions.graphSelected(nextGraphId));
-      }
+      },
+
+      componentWillUnmount: function componentWillUnmount() {
+        const { dispatch, graphId } = this.props;
+        dispatch(actions.graphDeselected(graphId));
+      },
     }),
   );
 
