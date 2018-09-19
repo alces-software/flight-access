@@ -1,20 +1,23 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
+import PropTypes from 'prop-types';
+import React from 'react';
 import Route from 'react-router/Route';
 import Switch from 'react-router/Switch';
+import isFunction from 'lodash.isfunction';
 import { CSSTransitionGroup } from 'react-transition-group';
 import { compose } from 'recompose';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 import { matchRoutes } from 'react-router-config';
 import { withRouter } from 'react-router';
-import isFunction from 'lodash.isfunction';
 
 import { Page } from 'flight-reactware';
 
 import ScrollToTop from './ScrollToTop';
 import SitePage from './Page';
-import routes from '../routes';
 import appVersion from '../version';
+import routes from '../routes';
+import { metrics } from '../modules';
 
 
 // Use our own version of `renderRoutes` which incorporates currently
@@ -65,19 +68,20 @@ const renderRoutes = (routes, extraProps = {}, switchProps = {}) => routes ? (
 const productName = process.env.REACT_APP_PRODUCT_NAME;
 
 const propTypes = {
+  graph: PropTypes.object,
   location: PropTypes.object,
   route: PropTypes.object,
 };
 
-const App = ({ location, route }) => {
+const App = ({ graph, location, route }) => {
   const branch = matchRoutes(routes, location.pathname);
   const lastRouteComponent = branch[branch.length - 1].route;
 
   const pageKey = isFunction(lastRouteComponent.pageKey) ?
-    lastRouteComponent.pageKey() :
+    lastRouteComponent.pageKey(graph) :
     lastRouteComponent.pageKey;
   const title = isFunction(lastRouteComponent.title) ?
-    lastRouteComponent.title() :
+    lastRouteComponent.title(graph) :
     lastRouteComponent.title;
 
   return (
@@ -96,6 +100,7 @@ const App = ({ location, route }) => {
           />
         </Helmet>
         <SitePage
+          graph={graph}
           pageKey={pageKey}
           title={title}
         >
@@ -118,6 +123,10 @@ App.propTypes = propTypes;
 
 const enhance = compose(
   withRouter,
+
+  connect(createStructuredSelector({
+    graph: metrics.selectors.selectedGraph,
+  })),
 );
 
 export default enhance(App);

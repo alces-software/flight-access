@@ -51,7 +51,8 @@ const routes = [
         path: '/metrics/:graph',
         exact: true,
         component: metrics.pages.Graph,
-        title: 'Metric',
+        title: (graph) => graph == null ? null : graph.title,
+        pageKey: (graph) => graph == null ? null : graph.id,
       },
       {
         path: '/',

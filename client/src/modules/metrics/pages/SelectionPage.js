@@ -9,14 +9,14 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { compose } from 'recompose';
 import { Container, Row, Col } from 'reactstrap';
-import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 
 import * as graphs from '../data/graphs';
+import * as actions from '../actions';
 
 let Option = ({ dispatch, graph }) => (
   <div
-    onClick={() => dispatch(push(`/metrics/${graph.id}`))}
+    onClick={() => dispatch(actions.graphSelected(graph))}
     style={{ border: '1px solid black' }}
   >
     <div>
@@ -31,7 +31,7 @@ let Option = ({ dispatch, graph }) => (
     </div>
     <div>
       <button
-        onClick={() => dispatch(push(`/metrics/${graph.id}`))}
+        onClick={() => dispatch(actions.graphSelected(graph))}
       >
         View
       </button>

@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { compose } from 'recompose';
 
 import { ProductBar } from 'flight-reactware';
@@ -9,10 +9,11 @@ import getItems from '../modules/items';
 
 const Page = ({
   children,
+  graph,
   pageKey,
   title,
 }) => {
-  const items = getItems();
+  const items = getItems(graph);
   return (
     <div>
       <Helmet>
@@ -32,6 +33,7 @@ const Page = ({
 
 Page.propTypes = {
   children: PropTypes.node.isRequired,
+  graph: PropTypes.object,
   pageKey: PropTypes.string,
   title: PropTypes.string.isRequired,
 };
