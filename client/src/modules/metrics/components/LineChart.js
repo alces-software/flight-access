@@ -19,7 +19,7 @@ import {
 
 import * as timeFormatters from '../utils/timeFormatters';
 
-const LineChart = ({ data, graph }) => {
+const LineChart = ({ data, graph, height, width }) => {
   const lines = graph.chartSeries.map((series) => (
     <Line
       dataKey={series.field}
@@ -34,9 +34,9 @@ const LineChart = ({ data, graph }) => {
   return (
     <BaseLineChart
       data={data}
-      height={300}
+      height={height}
       margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-      width={600}
+      width={width}
     >
       <XAxis dataKey={timeFormatters[graph.xAxisFormatter]} />
       <YAxis />
@@ -57,6 +57,13 @@ LineChart.propTypes = {
       name: PropTypes.string.isRequired,
     })).isRequired,
   }).isRequired,
+  height: PropTypes.number.isRequired,
+  width: PropTypes.number.isRequired,
+};
+
+LineChart.defaultProps = {
+  height: 300,
+  width: 600,
 };
 
 export default LineChart;

@@ -7,10 +7,12 @@
  *===========================================================================*/
 import PropTypes from 'prop-types';
 import React from 'react';
-import { branch, compose, mapProps, renderComponent } from 'recompose';
-import { Container, Row, Col } from 'reactstrap';
-import { withRouter } from 'react-router';
+import { Container } from 'reactstrap';
+import { PageHeading } from 'flight-reactware';
 import { Redirect, Link } from 'react-router-dom';
+import { withSize } from 'react-sizeme';
+import { branch, compose, mapProps, renderComponent } from 'recompose';
+import { withRouter } from 'react-router';
 
 import * as graphs from '../data/graphs';
 import { metrics } from '../data/cluster_1';
@@ -22,7 +24,7 @@ const graphTypes = {
   line: LineChart,
 };
 
-const GraphPage = ({ graph }) => {
+const GraphPage = ({ graph, size }) => {
   const GraphComponent = graphTypes[graph.graphType];
   if (GraphComponent == null) {
     return (
@@ -36,21 +38,24 @@ const GraphPage = ({ graph }) => {
     );
   }
   return (
-    <Container fluid >
-      <Row>
-        <Col>
-          <GraphComponent
-            data={metrics}
-            graph={graph}
-          />
-        </Col>
-      </Row>
+    <Container>
+      <PageHeading
+        overview={graph.subtitle}
+        sections={[]}
+        title={graph.title}
+      />
+      <GraphComponent
+        data={metrics}
+        graph={graph}
+        width={size.width}
+      />
     </Container>
   );
 };
 
 GraphPage.propTypes = {
   graph: PropTypes.object.isRequired,
+  size: PropTypes.object.isRequired,
 };
 
 GraphPage.defaultProps = {
@@ -70,6 +75,11 @@ const enhance = compose(
     ({ graph }) => graph == null,
     renderComponent(() => <Redirect to="/metrics" />),
   ),
+
+  withSize({
+    // monitorHeight: true,
+    monitorWidth: true,
+  }),
 );
 
 export default enhance(GraphPage);

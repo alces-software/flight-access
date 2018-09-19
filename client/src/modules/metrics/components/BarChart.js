@@ -19,7 +19,7 @@ import {
 
 import * as timeFormatters from '../utils/timeFormatters';
 
-const BarChart = ({ data, graph }) => {
+const BarChart = ({ data, graph, height, width }) => {
   const bars = graph.chartSeries.map((series) => (
     <Bar
       dataKey={series.field}
@@ -32,9 +32,9 @@ const BarChart = ({ data, graph }) => {
   return (
     <BaseBarChart
       data={data}
-      height={300}
+      height={height}
       margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-      width={600}
+      width={width}
     >
       <XAxis dataKey={timeFormatters[graph.xAxisFormatter]} />
       <YAxis />
@@ -55,6 +55,13 @@ BarChart.propTypes = {
       name: PropTypes.string.isRequired,
     })).isRequired,
   }).isRequired,
+  height: PropTypes.number.isRequired,
+  width: PropTypes.number.isRequired,
+};
+
+BarChart.defaultProps = {
+  height: 300,
+  width: 600,
 };
 
 export default BarChart;
