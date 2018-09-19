@@ -28,6 +28,7 @@ const ReLineChart = ({ data, graph }) => (
     <Line
       activeDot={{ r: 8 }}
       dataKey={graph.chartSeries[0].field}
+      dot={false}
       name={graph.chartSeries[0].name}
       stroke="#8884d8"
       type="monotone"
