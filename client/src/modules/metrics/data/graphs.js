@@ -30,7 +30,7 @@ export const loadOneReBar = {
 
 export const loadFive = {
   id: 'loadFive',
-  graphType: 'reline',
+  graphType: 'line',
   title: "Load five for the last hour",
   chartSeries: [
     {

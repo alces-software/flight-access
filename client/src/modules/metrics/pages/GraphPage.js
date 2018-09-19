@@ -7,10 +7,10 @@
  *===========================================================================*/
 import PropTypes from 'prop-types';
 import React from 'react';
-import { compose, mapProps } from 'recompose';
+import { branch, compose, mapProps, renderComponent } from 'recompose';
 import { Container, Row, Col } from 'reactstrap';
 import { withRouter } from 'react-router';
-import { Link } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 import * as graphs from '../data/graphs';
 import { metrics } from '../data/cluster_1';
@@ -23,15 +23,18 @@ const graphTypes = {
 };
 
 const GraphPage = ({ graph }) => {
-  if (graph == null) {
+  const GraphComponent = graphTypes[graph.graphType];
+  if (GraphComponent == null) {
     return (
-      <div>
-        Graph not found
-        <Link to="/metrics">Go back</Link>
-      </div>
+      <Container>
+        Unfortunately, we've been unable to render the selected graph.
+        Please{' '}
+        <Link to="/metrics">
+          select another graph
+        </Link>.
+      </Container>
     );
   }
-  const GraphComponent = graphTypes[graph.graphType];
   return (
     <Container fluid >
       <Row>
@@ -62,6 +65,11 @@ const enhance = compose(
       graph: graphs[graphId],
     };
   }),
+
+  branch(
+    ({ graph }) => graph == null,
+    renderComponent(() => <Redirect to="/metrics" />),
+  ),
 );
 
 export default enhance(GraphPage);
