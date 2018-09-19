@@ -35,7 +35,7 @@ const GraphPage = ({ graph }) => {
       </div>
     );
   }
-  const GraphComponent = graphTypes[graph.type];
+  const GraphComponent = graphTypes[graph.graphType];
   return (
     <Container fluid >
       <Row>

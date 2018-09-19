@@ -1,6 +1,6 @@
 export const loadOneLine = {
   id: 'loadOneLine',
-  type: 'line',
+  graphType: 'line',
   title: "Load one for the last hour",
   subtitle: "react-d3 line chart",
   chartSeries: [
@@ -15,7 +15,7 @@ export const loadOneLine = {
 
 export const loadOneReline = {
   id: 'loadOneReline',
-  type: 'reline',
+  graphType: 'reline',
   title: "Load one for the last hour",
   subtitle: "Recharts line chart",
   chartSeries: [
@@ -30,7 +30,7 @@ export const loadOneReline = {
 
 export const loadOneBar = {
   id: 'loadOneBar',
-  type: 'bar',
+  graphType: 'bar',
   title: "Load one for the last hour",
   subtitle: "react-d3 bar chart",
   chartSeries: [
@@ -45,7 +45,7 @@ export const loadOneBar = {
 
 export const loadOneReBar = {
   id: 'loadOneReBar',
-  type: 'rebar',
+  graphType: 'rebar',
   title: "Load one for the last hour",
   subtitle: "Recharts bar chart",
   chartSeries: [
@@ -60,7 +60,7 @@ export const loadOneReBar = {
 
 export const loadFive = {
   id: 'loadFive',
-  type: 'reline',
+  graphType: 'reline',
   title: "Load five for the last hour",
   chartSeries: [
     {
@@ -74,7 +74,7 @@ export const loadFive = {
 
 export const loadsLine = {
   id: 'loadsLine',
-  type: 'line',
+  graphType: 'line',
   title: "Load one and five for the last hour",
   subtitle: "react-d3 line chart",
   chartSeries: [
@@ -94,7 +94,7 @@ export const loadsLine = {
 
 export const loadsReLine = {
   id: 'loadsReLine',
-  type: 'reline',
+  graphType: 'reline',
   title: "Load one and five for the last hour",
   subtitle: "Recharts line chart",
   chartSeries: [
@@ -114,7 +114,7 @@ export const loadsReLine = {
 
 export const loadsBar = {
   id: 'loadsBar',
-  type: 'bar',
+  graphType: 'bar',
   title: "Load one and five for the last hour",
   subtitle: "react-d3 bar chart",
   chartSeries: [
@@ -134,7 +134,7 @@ export const loadsBar = {
 
 export const loadsReBar = {
   id: 'loadsReBar',
-  type: 'rebar',
+  graphType: 'rebar',
   title: "Load one and five for the last hour",
   subtitle: "Recharts bar chart",
   chartSeries: [

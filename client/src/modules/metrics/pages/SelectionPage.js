@@ -52,8 +52,8 @@ Option.propTypes = {
 Option = connect()(Option);
 
 const SelectionPage = () => {
-  const options = Object.keys(graphs).map(name => {
-    const graph = graphs[name];
+  const options = Object.keys(graphs).map(graphId => {
+    const graph = graphs[graphId];
     return (
       <Col key={graph.id}>
         <Option graph={graph} />
