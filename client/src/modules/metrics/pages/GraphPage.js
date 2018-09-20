@@ -11,20 +11,20 @@ import { Container } from 'reactstrap';
 import { PageHeading } from 'flight-reactware';
 import { Redirect, Link } from 'react-router-dom';
 import { withSize } from 'react-sizeme';
-import { branch, compose, mapProps, renderComponent } from 'recompose';
-import { withRouter } from 'react-router';
+import { branch, compose, renderComponent } from 'recompose';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
-import * as graphs from '../data/graphs';
-import { metrics } from '../data/cluster_1';
-import LineChart from '../components/LineChart';
+import * as selectors from '../selectors';
 import BarChart from '../components/BarChart';
+import LineChart from '../components/LineChart';
 
 const graphTypes = {
   bar: BarChart,
   line: LineChart,
 };
 
-const GraphPage = ({ graph, size }) => {
+const GraphPage = ({ cluster, graph, metrics, size }) => {
   const GraphComponent = graphTypes[graph.graphType];
   if (GraphComponent == null) {
     return (
@@ -37,10 +37,15 @@ const GraphPage = ({ graph, size }) => {
       </Container>
     );
   }
+  const overview = (
+    <span>
+      {graph.subtitle} for {cluster.name}
+    </span>
+  );
   return (
     <Container>
       <PageHeading
-        overview={graph.subtitle}
+        overview={overview}
         sections={[]}
         title={graph.title}
       />
@@ -54,7 +59,9 @@ const GraphPage = ({ graph, size }) => {
 };
 
 GraphPage.propTypes = {
+  cluster: PropTypes.object.isRequired,
   graph: PropTypes.object.isRequired,
+  metrics: PropTypes.array.isRequired,
   size: PropTypes.object.isRequired,
 };
 
@@ -62,14 +69,11 @@ GraphPage.defaultProps = {
 };
 
 const enhance = compose(
-  withRouter,
-
-  mapProps(({ match }) => {
-    const graphId = match.params.graph;
-    return {
-      graph: graphs[graphId],
-    };
-  }),
+  connect(createStructuredSelector({
+    cluster: selectors.selectedCluster,
+    graph: selectors.selectedGraph,
+    metrics: selectors.clusterMetrics,
+  })),
 
   branch(
     ({ graph }) => graph == null,

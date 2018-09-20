@@ -13,3 +13,17 @@ export function graphDeselected(graphId) {
     payload: null,
   };
 }
+
+export function clusterSelected(clusterId) {
+  return {
+    type: actionTypes.CLUSTER_SELECTED,
+    payload: clusterId,
+  };
+}
+
+export function clusterDeselected(clusterId) {
+  return {
+    type: actionTypes.CLUSTER_SELECTED,
+    payload: null,
+  };
+}

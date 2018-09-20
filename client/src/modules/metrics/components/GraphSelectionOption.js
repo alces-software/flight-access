@@ -19,14 +19,21 @@ import {
 // import { push } from 'react-router-redux';
 // import { compose } from 'recompose';
 // import { Container, Row, Col } from 'reactstrap';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import { LinkContainer } from 'flight-reactware';
 // import FontAwesome from 'react-fontawesome';
 
-const GraphSelectionOption = ({ graph }) => {
+import * as actions from '../actions';
+
+const GraphSelectionOption = ({ dispatch, graph }) => {
   const href = `/metrics/${graph.id}`;
+  const onClick = () => dispatch(actions.graphSelected(graph.id));
+
   return (
-    <LinkContainer to={href} >
+    <LinkContainer
+      onClick={onClick}
+      to={href}
+    >
       <Card>
         <CardBody>
           <CardTitle>
@@ -39,7 +46,10 @@ const GraphSelectionOption = ({ graph }) => {
             {graph.subtitle}
             {graph.description}
           </CardText>
-          <LinkContainer to={href}>
+          <LinkContainer
+            onClick={onClick}
+            to={href}
+          >
             <Button color="primary" >View</Button>
           </LinkContainer>
         </CardBody>
@@ -49,9 +59,10 @@ const GraphSelectionOption = ({ graph }) => {
 };
 
 GraphSelectionOption.propTypes = {
+  dispatch: PropTypes.func.isRequired,
   graph: PropTypes.shape({
     title: PropTypes.node.isRequired,
   }).isRequired,
 };
 
-export default GraphSelectionOption;
+export default connect()(GraphSelectionOption);
