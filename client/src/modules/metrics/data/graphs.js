@@ -5,7 +5,7 @@ export const nodesAvailable = {
   subtitle: "Number of nodes available for use by the scheduler",
   chartSeries: [
     {
-      field: 'load1',
+      field: 'nodesAvailableToScheduler',
       name: 'Nodes available',
       color: '#ff7f0e'
     }
@@ -20,7 +20,7 @@ export const nodesAvailableQueue = {
   subtitle: "Number of nodes available for use to the queue bynode.q",
   chartSeries: [
     {
-      field: 'load5',
+      field: 'nodesAvailableToQueueByNode',
       name: 'Nodes available (bynode.q)',
       color: '#ff7f0e'
     }
@@ -35,12 +35,12 @@ export const nodesAvailableAllQueues = {
   subtitle: "Number of nodes available for use for each queue",
   chartSeries: [
     {
-      field: 'load5',
+      field: 'nodesAvailableToQueueByNode',
       name: 'Nodes available (bynode.q)',
       color: '#7f7f0e'
     },
     {
-      field: 'load15',
+      field: 'nodesAvailableToQueueBySlot',
       name: 'Nodes available (byslot.q)',
       color: '#ff7f0e'
     },
