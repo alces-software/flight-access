@@ -17,10 +17,12 @@ import { createStructuredSelector } from 'reselect';
 
 import * as selectors from '../selectors';
 import BarChart from '../components/BarChart';
+import BubbleChart from '../components/BubbleChart';
 import LineChart from '../components/LineChart';
 
 const graphTypes = {
   bar: BarChart,
+  bubble: BubbleChart,
   line: LineChart,
 };
 

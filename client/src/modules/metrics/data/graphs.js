@@ -1,3 +1,20 @@
+// XXX What graphs do we want?
+//
+// Cluster:
+//
+//  - nodes available
+//
+// Queues:  per queue and total.
+//
+//  - nodes available
+//  - nodes used
+//  - nodes total
+//  - cores available
+//  - cores used
+//  - cores total
+//  - jobs queued
+//  - jobs running
+
 export const nodesAvailable = {
   id: 'nodesAvailable',
   graphType: 'line',
@@ -44,6 +61,21 @@ export const nodesAvailableAllQueues = {
       name: 'Nodes available (byslot.q)',
       color: '#ff7f0e'
     },
+  ],
+  xAxisFormatter: 'timestampToHoursAndMinutes',
+};
+
+export const bubble = {
+  id: 'bubble',
+  graphType: 'bubble',
+  title: "Node availability last week",
+  subtitle: "Number of nodes available for use last week",
+  chartSeries: [
+    {
+      field: 'nodesAvailableToScheduler',
+      name: 'Nodes available',
+      color: '#ff7f0e'
+    }
   ],
   xAxisFormatter: 'timestampToHoursAndMinutes',
 };
