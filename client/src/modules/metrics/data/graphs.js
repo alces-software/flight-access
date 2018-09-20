@@ -1,81 +1,47 @@
-export const loadOneReline = {
-  id: 'loadOneReline',
+export const nodesAvailable = {
+  id: 'nodesAvailable',
   graphType: 'line',
-  title: "Load one for the last hour",
-  subtitle: "Recharts line chart",
+  title: "Nodes available to scheduler",
+  subtitle: "Number of nodes available for use by the scheduler",
   chartSeries: [
     {
       field: 'load1',
-      name: 'Load one',
+      name: 'Nodes available',
       color: '#ff7f0e'
     }
   ],
   xAxisFormatter: 'timestampToHoursAndMinutes',
 };
 
-export const loadOneReBar = {
-  id: 'loadOneReBar',
+export const nodesAvailableQueue = {
+  id: 'nodesAvailableQueue',
   graphType: 'bar',
-  title: "Load one for the last hour",
-  subtitle: "Recharts bar chart",
+  title: "Nodes available to queue bynode.q",
+  subtitle: "Number of nodes available for use to the queue bynode.q",
   chartSeries: [
     {
-      field: 'load1',
-      name: 'Load one',
+      field: 'load5',
+      name: 'Nodes available (bynode.q)',
       color: '#ff7f0e'
     }
   ],
   xAxisFormatter: 'timestampToHoursAndMinutes',
 };
 
-export const loadFive = {
-  id: 'loadFive',
-  graphType: 'line',
-  title: "Load five for the last hour",
-  chartSeries: [
-    {
-      field: 'load5',
-      name: 'Load five',
-      color: '#ff7f0e'
-    }
-  ],
-  xAxisFormatter: 'timestampToHoursAndMinutes',
-};
-
-export const loadsReLine = {
-  id: 'loadsReLine',
-  graphType: 'line',
-  title: "Load one and five for the last hour",
-  subtitle: "Recharts line chart",
-  chartSeries: [
-    {
-      field: 'load1',
-      name: 'Load one',
-      color: '#7fff0e'
-    },
-    {
-      field: 'load5',
-      name: 'Load five',
-      color: '#ff7f0e'
-    },
-  ],
-  xAxisFormatter: 'timestampToHoursAndMinutes',
-};
-
-export const loadsReBar = {
-  id: 'loadsReBar',
+export const nodesAvailableAllQueues = {
+  id: 'nodesAvailableAllQueues',
   graphType: 'bar',
-  title: "Load one and five for the last hour",
-  subtitle: "Recharts bar chart",
+  title: "Nodes available for each queue",
+  subtitle: "Number of nodes available for use for each queue",
   chartSeries: [
     {
-      field: 'load1',
-      name: 'Load one',
-      color: '#7fff0e'
+      field: 'load5',
+      name: 'Nodes available (bynode.q)',
+      color: '#7f7f0e'
     },
     {
-      field: 'load5',
-      name: 'Load five',
+      field: 'load15',
+      name: 'Nodes available (byslot.q)',
       color: '#ff7f0e'
     },
   ],
