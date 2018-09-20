@@ -10,7 +10,7 @@ import React from 'react';
 import { Container } from 'reactstrap';
 import { PageHeading } from 'flight-reactware';
 import { Redirect, Link } from 'react-router-dom';
-import { withSize } from 'react-sizeme';
+import { SizeMe } from 'react-sizeme';
 import { branch, compose, renderComponent } from 'recompose';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -24,7 +24,7 @@ const graphTypes = {
   line: LineChart,
 };
 
-const GraphPage = ({ cluster, graph, metrics, size }) => {
+const GraphPage = ({ cluster, graph, metrics }) => {
   const GraphComponent = graphTypes[graph.graphType];
   if (GraphComponent == null) {
     return (
@@ -49,11 +49,15 @@ const GraphPage = ({ cluster, graph, metrics, size }) => {
         sections={[]}
         title={graph.title}
       />
-      <GraphComponent
-        data={metrics}
-        graph={graph}
-        width={size.width}
-      />
+      <SizeMe monitorWidth >
+        {({ size }) => (
+          <GraphComponent
+            data={metrics}
+            graph={graph}
+            width={size.width}
+          />
+        )}
+      </SizeMe>
     </Container>
   );
 };
@@ -62,7 +66,6 @@ GraphPage.propTypes = {
   cluster: PropTypes.object.isRequired,
   graph: PropTypes.object.isRequired,
   metrics: PropTypes.array.isRequired,
-  size: PropTypes.object.isRequired,
 };
 
 GraphPage.defaultProps = {
@@ -79,11 +82,6 @@ const enhance = compose(
     ({ graph }) => graph == null,
     renderComponent(() => <Redirect to="/metrics" />),
   ),
-
-  withSize({
-    // monitorHeight: true,
-    monitorWidth: true,
-  }),
 );
 
 export default enhance(GraphPage);
