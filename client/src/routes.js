@@ -61,6 +61,13 @@ const routes = [
         ],
       },
       {
+        path: '/compare',
+        exact: true,
+        component: metrics.pages.Compare,
+        title: (graph) => graph == null ? null : graph.title,
+        pageKey: (graph) => graph == null ? null : graph.id,
+      },
+      {
         path: '/',
         exact: true,
         component: Home,

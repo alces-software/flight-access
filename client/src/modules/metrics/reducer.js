@@ -3,9 +3,23 @@ import {
   GRAPH_SELECTED,
 } from './actionTypes';
 
+function makeCompareData(graphId) {
+  return [
+    {
+      clusterId: 'clusterOne',
+      graphId: graphId,
+    },
+    {
+      clusterId: 'clusterTwo',
+      graphId: graphId,
+    },
+  ];
+}
+
 const initialState = {
   selectedGraphId: null,
   selectedClusterId: 'clusterOne',
+  compare: [],
 };
 
 function reducer(state=initialState, { type, payload }) {
@@ -20,6 +34,7 @@ function reducer(state=initialState, { type, payload }) {
       return {
         ...state,
         selectedGraphId: payload,
+        compare: makeCompareData(payload),
       };
 
     default:

@@ -9,10 +9,12 @@
 // Add publicly exported pages here and to the export below.
 // Any pages which are intended to only be used internally to this module
 // should not be included here.
+import Compare from './ComparePage';
 import Graph from './GraphPage';
 import Selection from './SelectionPage';
 
 export {
+  Compare,
   Graph,
   Selection,
 };
