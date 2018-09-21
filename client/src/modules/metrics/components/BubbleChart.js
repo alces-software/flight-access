@@ -19,24 +19,54 @@ import {
 
 import * as timeFormatters from '../utils/timeFormatters';
 
-function generateSeries(data) {
-  const series = [];
+const days = [
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday',
+  'Sunday',
+];
+
+function generateLineData(data) {
+  const lineData = [];
   let processingDay;
-  let daySeries = [];
-  data.forEach(d => {
-    const date = new Date(d.timestamp * 1000);
+  let dayData = {};
+
+  data.forEach(datum => {
+    const date = new Date(datum.timestamp * 1000);
     const currentDay = date.getDate();
-    if (processingDay == null) {
-      processingDay = currentDay;
-    }
+
     if (processingDay !== currentDay) {
-      series.push(daySeries);
-      daySeries = [];
+      let weekDayNumber = date.getDay() - 1;  // Weeks start on Monday.
+      if (weekDayNumber < 0) {
+        weekDayNumber = 6;
+      }
+      dayData = {
+        name: days[weekDayNumber],
+        label: days[weekDayNumber],
+        data: [],
+        weekDayNumber: weekDayNumber,
+      };
       processingDay = currentDay;
+      lineData.push(dayData);
     }
-    daySeries.push(d);
+    dayData.data.push(datum);
   });
-  return series;
+
+  const lastLine = lineData[lineData.length - 1];
+  const lastData = lastLine.data[lastLine.data.length - 1];
+  if (lastLine.data.length < 24) {
+    for (let i=lastLine.data.length; i<24; i+=1) {
+      // Push a blank value for the next hour.
+      lastLine.data.push({
+        timestamp: lastData.timestamp + (60 * 60 * i),
+      });
+    }
+  }
+
+  return lineData;
 }
 
 function parseDomain(data, field) {
@@ -55,7 +85,7 @@ const BubbleLine = ({
   finalLine,
   label,
   name,
-  range,
+  sizeRange,
   chartSeries,
   width,
   xAxisFormatter,
@@ -86,7 +116,7 @@ const BubbleLine = ({
       dataKey={field}
       domain={domain}
       name={chartSeries.name}
-      range={range}
+      range={sizeRange}
       type="number"
     />
     <Tooltip
@@ -114,7 +144,7 @@ BubbleLine.propTypes = {
   finalLine: PropTypes.bool.isRequired,
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  range: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
+  sizeRange: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
   width: PropTypes.number.isRequired,
   xAxisFormatter: PropTypes.string.isRequired,
 };
@@ -122,37 +152,29 @@ BubbleLine.propTypes = {
 const BubbleChart = ({ data, graph, syncId, width }) => {
   const chartSeries = graph.chartSeries[0];
   const field = chartSeries.field;
-  const metrics = generateSeries(data);
   const domain = parseDomain(data, field);
-  const range = [16, 225];
-
-  const lines = [
-    { name: 'monday',    label: 'Monday',    data: metrics[0] },
-    { name: 'tuesday',   label: 'Tuesday',   data: metrics[1] },
-    { name: 'wednesday', label: 'Wednesday', data: metrics[2] },
-    { name: 'thursday',  label: 'Thursday',  data: metrics[3] },
-    { name: 'friday',    label: 'Friday',    data: metrics[4] },
-    { name: 'saturday',  label: 'Saturday',  data: metrics[5] },
-    { name: 'sunday',    label: 'Sunday',    data: metrics[6] },
-  ]
-    .filter(line => line.data);
+  // The size range of the "dots".
+  const sizeRange = [0, 255];
+  const lineData = generateLineData(data);
+  
+  console.log('lineData:', lineData);  // eslint-disable-line no-console
 
   return (
     <div>
       {
-        lines
+        lineData
           .map((line, idx) => (
             <BubbleLine
               chartSeries={chartSeries}
               data={line.data} 
               domain={domain}
               field={field}
-              finalLine={idx === lines.length - 1}
+              finalLine={idx === lineData.length - 1}
               graph={graph}
               key={line.name}
               label={line.label}
               name={line.name}
-              range={range}
+              sizeRange={sizeRange}
               width={width}
               xAxisFormatter={graph.xAxisFormatter}
             />
