@@ -9,59 +9,15 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Container } from 'reactstrap';
 import { PageHeading } from 'flight-reactware';
-import { Redirect, Link } from 'react-router-dom';
-import { SizeMe } from 'react-sizeme';
+import { Redirect } from 'react-router-dom';
 import { branch, compose, renderComponent } from 'recompose';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
 import * as selectors from '../selectors';
-import BarChart from '../components/BarChart';
-import LineChart from '../components/LineChart';
+import SizedGraph from '../components/SizedGraph';
 
 import * as metrics from '../data/metrics';
-
-const graphTypes = {
-  bar: BarChart,
-  line: LineChart,
-};
-
-const GraphWrapper = ({ comparison, size }) => {
-  const { cluster, graph } = comparison;
-  const GraphComponent = graphTypes[graph.graphType];
-  if (GraphComponent == null) {
-    return (
-      <Container>
-        Unfortunately, we've been unable to render the selected graph.
-        Please{' '}
-        <Link to="/metrics">
-          select another graph
-        </Link>.
-      </Container>
-    );
-  }
-  return (
-    <div>
-      <h4>{cluster.name}</h4>
-      <GraphComponent
-        data={metrics[cluster.id]}
-        graph={graph}
-        syncId="someId"
-        width={size.width}
-      />
-    </div>
-  );
-};
-
-GraphWrapper.propTypes = {
-  comparison: PropTypes.shape({
-    cluster: PropTypes.object.isRequired,
-    graph: PropTypes.object.isRequired,
-  }).isRequired,
-  size: PropTypes.shape({
-    width: PropTypes.number.isRequired,
-  }).isRequired,
-};
 
 const ComparePage = ({ comparisons }) => {
   const overview = (
@@ -81,19 +37,15 @@ const ComparePage = ({ comparisons }) => {
         sections={[]}
         title={title}
       />
-      <SizeMe monitorWidth >
-        {({ size }) => (
-          <div>
-            {comparisons.map((c, idx) => (
-              <GraphWrapper
-                comparison={c}
-                key={idx}
-                size={size}
-              />
-            ))}
-          </div>
-        )}
-      </SizeMe>
+      {comparisons.map((c, idx) => (
+        <SizedGraph
+          graph={c.graph}
+          key={idx}
+          metrics={metrics[c.cluster.id]}
+          syncId="someValue"
+          title={c.cluster.name}
+        />
+      ))}
     </Container>
   );
 };

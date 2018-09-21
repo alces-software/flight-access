@@ -61,12 +61,18 @@ const routes = [
         ],
       },
       {
-        path: '/compare',
-        exact: true,
-        component: metrics.pages.Compare,
-        // XXX Are these correct?
-        title: (graph) => graph == null ? null : graph.title,
-        pageKey: (graph) => graph == null ? null : graph.id,
+        path: '/compare/:graph',
+        component: metrics.withGraphContext(),
+        routes: [
+          {
+            path: '/compare/:graph',
+            exact: true,
+            component: metrics.pages.Compare,
+            // XXX Are these correct?
+            title: (graph) => graph == null ? null : graph.title,
+            pageKey: (graph) => graph == null ? null : graph.id,
+          },
+        ],
       },
       {
         path: '/',

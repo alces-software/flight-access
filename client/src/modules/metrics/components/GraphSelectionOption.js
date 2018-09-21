@@ -54,7 +54,7 @@ const GraphSelectionOption = ({ dispatch, graph }) => {
           </LinkContainer>
           <LinkContainer
             onClick={onClick}
-            to="/compare"
+            to={`/compare/${graph.id}`}
           >
             <Button color="secondary" >Compare</Button>
           </LinkContainer>
