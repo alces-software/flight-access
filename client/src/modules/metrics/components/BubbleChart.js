@@ -18,6 +18,7 @@ import {
 } from 'recharts';
 
 import * as timeFormatters from '../utils/timeFormatters';
+// import TooltipContent from './TooltipContent';
 
 
 function generateSeries(data) {
@@ -48,31 +49,6 @@ function parseDomain(data, field) {
     ])
   ];
 };
-
-// eslint-disable-next-line react/prop-types
-function renderTooltip({ active, payload }) {
-  if (active && payload && payload.length) {
-    const timestamp = payload[0].payload.timestamp;
-    const date = new Date(timestamp * 1000).toString();
-    const value = payload[0].value;
-
-    return (
-      <div
-        style={{
-          backgroundColor: '#fff',
-          border: '1px solid #999',
-          margin: 0,
-          padding: 10
-        }}
-      >
-        <p>{date}</p>
-        <p><span>value: </span>{value}</p>
-      </div>
-    );
-  }
-
-  return null;
-}
 
 const BubbleLine = ({
   data,
@@ -111,11 +87,12 @@ const BubbleLine = ({
     <ZAxis
       dataKey={field}
       domain={domain}
+      name={chartSeries.name}
       range={range}
       type="number"
     />
     <Tooltip
-      content={renderTooltip(chartSeries)}
+      // content={<TooltipContent />}
       cursor={{ strokeDasharray: '3 3' }}
       wrapperStyle={{ zIndex: 100 }}
     />
