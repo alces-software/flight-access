@@ -17,7 +17,7 @@ export default function withGraphContext() {
     connect(),
 
     lifecycle({
-      componentDidMount: function componentDidMount() {
+      componentWillMount: function componentDidMount() {
         const { dispatch, graphId } = this.props;
         dispatch(actions.graphSelected(graphId));
       },

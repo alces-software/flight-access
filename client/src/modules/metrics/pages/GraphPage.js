@@ -9,36 +9,15 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Container } from 'reactstrap';
 import { PageHeading } from 'flight-reactware';
-import { Redirect, Link } from 'react-router-dom';
-import { SizeMe } from 'react-sizeme';
+import { Redirect } from 'react-router-dom';
 import { branch, compose, renderComponent } from 'recompose';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
 import * as selectors from '../selectors';
-import BarChart from '../components/BarChart';
-import BubbleChart from '../components/BubbleChart';
-import LineChart from '../components/LineChart';
-
-const graphTypes = {
-  bar: BarChart,
-  bubble: BubbleChart,
-  line: LineChart,
-};
+import SizedGraph from '../components/SizedGraph';
 
 const GraphPage = ({ cluster, graph, metrics }) => {
-  const GraphComponent = graphTypes[graph.graphType];
-  if (GraphComponent == null) {
-    return (
-      <Container>
-        Unfortunately, we've been unable to render the selected graph.
-        Please{' '}
-        <Link to="/metrics">
-          select another graph
-        </Link>.
-      </Container>
-    );
-  }
   const overview = (
     <span>
       {graph.subtitle} for {cluster.name}
@@ -51,15 +30,10 @@ const GraphPage = ({ cluster, graph, metrics }) => {
         sections={[]}
         title={graph.title}
       />
-      <SizeMe monitorWidth >
-        {({ size }) => (
-          <GraphComponent
-            data={metrics}
-            graph={graph}
-            width={size.width}
-          />
-        )}
-      </SizeMe>
+      <SizedGraph
+        graph={graph}
+        metrics={metrics}
+      />
     </Container>
   );
 };
