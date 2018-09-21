@@ -18,7 +18,6 @@ import {
 } from 'recharts';
 
 import * as timeFormatters from '../utils/timeFormatters';
-// import TooltipContent from './TooltipContent';
 
 const LineChart = ({ data, graph, height, syncId, width }) => {
   const lines = graph.chartSeries.map((series) => (
@@ -43,16 +42,7 @@ const LineChart = ({ data, graph, height, syncId, width }) => {
       <XAxis dataKey={timeFormatters[graph.xAxisFormatter]} />
       <YAxis />
       <CartesianGrid strokeDasharray="3 3" />
-      <Tooltip
-        // content={<TooltipContent />}
-        // formatter={(value, name, entry, idx) => {
-        //   return value;
-        // }}
-        // labelFormatter={(label) => {
-        //   console.log('label:', label);  // eslint-disable-line no-console
-        //   return label;
-        // }}
-      />
+      <Tooltip />
       <Legend />
       {lines}
     </BaseLineChart>

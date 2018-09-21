@@ -18,8 +18,6 @@ import {
 } from 'recharts';
 
 import * as timeFormatters from '../utils/timeFormatters';
-// import TooltipContent from './TooltipContent';
-
 
 function generateSeries(data) {
   const series = [];
@@ -92,7 +90,6 @@ const BubbleLine = ({
       type="number"
     />
     <Tooltip
-      // content={<TooltipContent />}
       cursor={{ strokeDasharray: '3 3' }}
       wrapperStyle={{ zIndex: 100 }}
     />
