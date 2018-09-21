@@ -8,8 +8,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
-  // CartesianGrid,
-  // Legend,
+  Legend,
   Scatter,
   ScatterChart,
   Tooltip,
@@ -79,22 +78,22 @@ const BubbleLine = ({
   data,
   domain,
   field,
+  finalLine,
   label,
   name,
   range,
   chartSeries,
-  showTimes,
   width,
   xAxisFormatter,
 }) => (
   <ScatterChart
-    height={60}
+    height={finalLine ? (60 + 24) : 60}
     margin={{ top: 10, right: 0, bottom: 0, left: 0 }}
     width={width}
   >
     <XAxis
       dataKey={timeFormatters[xAxisFormatter]}
-      tick={{ fontSize: showTimes ? undefined : 0 }}
+      tick={{ fontSize: finalLine ? undefined : 0 }}
       tickLine={{ transform: 'translate(0, -6)' }}
       type="category"
     />
@@ -116,13 +115,15 @@ const BubbleLine = ({
       type="number"
     />
     <Tooltip
-      content={renderTooltip}
+      content={renderTooltip(chartSeries)}
       cursor={{ strokeDasharray: '3 3' }}
       wrapperStyle={{ zIndex: 100 }}
     />
+    { finalLine ? <Legend /> : null }
     <Scatter
       data={data} 
       fill={chartSeries.color}
+      name={chartSeries.name}
     />
   </ScatterChart>
 );
@@ -136,10 +137,10 @@ BubbleLine.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
   domain: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
   field: PropTypes.string.isRequired,
+  finalLine: PropTypes.bool.isRequired,
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   range: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
-  showTimes: PropTypes.bool.isRequired,
   width: PropTypes.number.isRequired,
   xAxisFormatter: PropTypes.string.isRequired,
 };
@@ -172,12 +173,12 @@ const BubbleChart = ({ data, graph, syncId, width }) => {
               data={line.data} 
               domain={domain}
               field={field}
+              finalLine={idx === lines.length - 1}
               graph={graph}
               key={line.name}
               label={line.label}
               name={line.name}
               range={range}
-              showTimes={idx === lines.length - 1}
               width={width}
               xAxisFormatter={graph.xAxisFormatter}
             />
