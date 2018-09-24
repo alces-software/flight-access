@@ -1,14 +1,16 @@
 import { createSelector } from 'reselect';
 
-import { NAME } from './constants';
-import * as graphs from './data/graphs';
 import * as clusters from './data/clusters';
+import * as graphs from './data/graphs';
 import * as metrics from './data/metrics';
+import * as sites from './data/sites';
+import { NAME } from './constants';
 
 const metricsState = (state) => state[NAME];
 const compareData = (state) => metricsState(state).compare;
-const selectedGraphId = (state) => metricsState(state).selectedGraphId;
 const selectedClusterId = (state) => metricsState(state).selectedClusterId;
+const selectedGraphId = (state) => metricsState(state).selectedGraphId;
+const selectedSiteId = (state) => metricsState(state).selectedSiteId;
 
 export const selectedGraph = createSelector(
   selectedGraphId,
@@ -20,6 +22,12 @@ export const selectedCluster = createSelector(
   selectedClusterId,
 
   (id) => id == null ? null : clusters[id],
+);
+
+export const selectedSite = createSelector(
+  selectedSiteId,
+
+  (id) => id == null ? null : sites[id],
 );
 
 export const clusterMetrics = createSelector(

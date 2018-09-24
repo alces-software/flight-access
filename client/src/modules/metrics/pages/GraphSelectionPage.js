@@ -6,28 +6,14 @@
  * All rights reserved, see LICENSE.txt.
  *===========================================================================*/
 import React from 'react';
-import styled from 'styled-components';
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Col } from 'reactstrap';
 import { compose } from 'recompose';
 
 import * as graphs from '../data/graphs';
+import EqualHeightRow from '../../../components/EqualHeightRow';
 import GraphSelectionOption from '../components/GraphSelectionOption';
 
-const EqualHeightRow = styled(Row)`
-  display: flex;
-  flex-wrap: wrap;
-  & > [class*='col-'] {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 6px;
-  }
-
-  .card {
-      flex: 1;
-  }
-`;
-
-const SelectionPage = () => {
+const GraphSelectionPage = () => {
   const options = Object.keys(graphs).map(graphId => {
     const graph = graphs[graphId];
     return (
@@ -49,13 +35,13 @@ const SelectionPage = () => {
   );
 };
 
-SelectionPage.propTypes = {
+GraphSelectionPage.propTypes = {
 };
 
-SelectionPage.defaultProps = {
+GraphSelectionPage.defaultProps = {
 };
 
 const enhance = compose(
 );
 
-export default enhance(SelectionPage);
+export default enhance(GraphSelectionPage);

@@ -11,22 +11,19 @@ import {
   Button,
   Card,
   CardBody,
-  // CardHeader,
   CardSubtitle,
   CardText,
   CardTitle,
 } from 'reactstrap';
-// import { push } from 'react-router-redux';
-// import { compose } from 'recompose';
-// import { Container, Row, Col } from 'reactstrap';
-import { connect } from 'react-redux';
 import { LinkContainer } from 'flight-reactware';
-// import FontAwesome from 'react-fontawesome';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
 import * as actions from '../actions';
+import * as selectors from '../selectors';
 
-const GraphSelectionOption = ({ dispatch, graph }) => {
-  const href = `/metrics/${graph.id}`;
+const GraphSelectionOption = ({ cluster, dispatch, graph }) => {
+  const href = `/clusters/${cluster.id}/${graph.id}`;
   const onClick = () => dispatch(actions.graphSelected(graph.id));
 
   return (
@@ -39,12 +36,15 @@ const GraphSelectionOption = ({ dispatch, graph }) => {
           <CardTitle>
             {graph.title}
           </CardTitle>
-          <CardSubtitle>
-            {graph.subtitle}
-          </CardSubtitle>
+          {
+            graph.subtitle == null ? null : (
+              <CardSubtitle>
+                {graph.subtitle}
+              </CardSubtitle>
+            )
+          }
           <CardText>
-            {graph.subtitle}
-            {graph.description}
+            {graph.description || graph.subtitle || ''}
           </CardText>
           <LinkContainer
             onClick={onClick}
@@ -65,10 +65,18 @@ const GraphSelectionOption = ({ dispatch, graph }) => {
 };
 
 GraphSelectionOption.propTypes = {
+  cluster: PropTypes.shape({
+    id: PropTypes.oneOf([PropTypes.number, PropTypes.string]).isRequired,
+  }).isRequired,
   dispatch: PropTypes.func.isRequired,
   graph: PropTypes.shape({
+    description: PropTypes.node,
+    id: PropTypes.oneOf([PropTypes.number, PropTypes.string]).isRequired,
+    subtitle: PropTypes.node,
     title: PropTypes.node.isRequired,
   }).isRequired,
 };
 
-export default connect()(GraphSelectionOption);
+export default connect(createStructuredSelector({
+  cluster: selectors.selectedCluster,
+}))(GraphSelectionOption);

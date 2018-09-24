@@ -68,20 +68,22 @@ const renderRoutes = (routes, extraProps = {}, switchProps = {}) => routes ? (
 const productName = process.env.REACT_APP_PRODUCT_NAME;
 
 const propTypes = {
+  cluster: PropTypes.object,
   graph: PropTypes.object,
   location: PropTypes.object,
   route: PropTypes.object,
+  site: PropTypes.object,
 };
 
-const App = ({ graph, location, route }) => {
+const App = ({ cluster, graph, location, route, site }) => {
   const branch = matchRoutes(routes, location.pathname);
   const lastRouteComponent = branch[branch.length - 1].route;
 
   const pageKey = isFunction(lastRouteComponent.pageKey) ?
-    lastRouteComponent.pageKey(graph) :
+    lastRouteComponent.pageKey(site, cluster, graph) :
     lastRouteComponent.pageKey;
   const title = isFunction(lastRouteComponent.title) ?
-    lastRouteComponent.title(graph) :
+    lastRouteComponent.title(site, cluster, graph) :
     lastRouteComponent.title;
 
   return (
@@ -100,8 +102,10 @@ const App = ({ graph, location, route }) => {
           />
         </Helmet>
         <SitePage
+          cluster={cluster}
           graph={graph}
           pageKey={pageKey}
+          site={site}
           title={title}
         >
           <CSSTransitionGroup
@@ -125,7 +129,9 @@ const enhance = compose(
   withRouter,
 
   connect(createStructuredSelector({
+    cluster: metrics.selectors.selectedCluster,
     graph: metrics.selectors.selectedGraph,
+    site: metrics.selectors.selectedSite,
   })),
 );
 

@@ -9,11 +9,13 @@ import getItems from '../modules/items';
 
 const Page = ({
   children,
+  cluster,
   graph,
   pageKey,
   title,
+  site,
 }) => {
-  const items = getItems(graph);
+  const items = getItems(site, cluster, graph);
   return (
     <div>
       <Helmet>
@@ -33,8 +35,10 @@ const Page = ({
 
 Page.propTypes = {
   children: PropTypes.node.isRequired,
+  cluster: PropTypes.object,
   graph: PropTypes.object,
   pageKey: PropTypes.string,
+  site: PropTypes.string,
   title: PropTypes.string.isRequired,
 };
 

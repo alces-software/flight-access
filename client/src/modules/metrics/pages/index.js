@@ -9,12 +9,14 @@
 // Add publicly exported pages here and to the export below.
 // Any pages which are intended to only be used internally to this module
 // should not be included here.
+import ClusterSelection from './ClusterSelectionPage';
 import Compare from './ComparePage';
 import Graph from './GraphPage';
-import Selection from './SelectionPage';
+import GraphSelection from './GraphSelectionPage';
 
 export {
+  ClusterSelection,
   Compare,
   Graph,
-  Selection,
+  GraphSelection,
 };

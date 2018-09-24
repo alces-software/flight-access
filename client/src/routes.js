@@ -42,21 +42,36 @@ const routes = [
     routes: [
       ...metaPageRouteConfigs,
       {
-        path: '/metrics',
+        path: '/overview',
         exact: true,
-        component: metrics.pages.Selection,
-        title: 'Metrics',
+        component: Home,
+        title: 'Overview',
       },
       {
-        path: '/metrics/:graph',
+        path: '/',
+        exact: true,
+        component: metrics.pages.ClusterSelection,
+        title: (site) => site == null ? null : site.name,
+        pageKey: (site) => site == null ? null : site.id,
+      },
+      {
+        path: '/clusters/:clusterId',
+        exact: true,
+        component: metrics.pages.GraphSelection,
+        title: (site, cluster) => cluster == null ? null : cluster.name,
+        pageKey: (site, cluster) => cluster == null ? null : cluster.id,
+      },
+      {
+        path: '/clusters/:clusterId/:graph',
         component: metrics.withGraphContext(),
         routes: [
           {
-            path: '/metrics/:graph',
+            path: '/clusters/:clusterId/:graph',
             exact: true,
             component: metrics.pages.Graph,
-            title: (graph) => graph == null ? null : graph.title,
-            pageKey: (graph) => graph == null ? null : graph.id,
+            // XXX Are these correct?
+            title: (site, cluster, graph) => graph == null ? null : graph.title,
+            pageKey: (site, cluster, graph) => graph == null ? null : graph.id,
           },
         ],
       },
@@ -73,12 +88,6 @@ const routes = [
             pageKey: (graph) => graph == null ? null : graph.id,
           },
         ],
-      },
-      {
-        path: '/',
-        exact: true,
-        component: Home,
-        title: 'Overview',
       },
       notFoundRouteConfig,
     ],

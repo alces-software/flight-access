@@ -3,6 +3,8 @@ import {
   GRAPH_SELECTED,
 } from './actionTypes';
 
+import * as sites from './data/sites';
+
 function makeCompareData(graphId) {
   return [
     {
@@ -18,7 +20,8 @@ function makeCompareData(graphId) {
 
 const initialState = {
   selectedGraphId: null,
-  selectedClusterId: 'demo',
+  selectedClusterId: null,
+  selectedSiteId: Object.keys(sites)[0],
   compare: [],
 };
 

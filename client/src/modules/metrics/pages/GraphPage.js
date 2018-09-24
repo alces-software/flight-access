@@ -55,8 +55,11 @@ const enhance = compose(
   })),
 
   branch(
-    ({ graph }) => graph == null,
-    renderComponent(() => <Redirect to="/metrics" />),
+    ({ cluster, graph }) => cluster == null || graph == null,
+    renderComponent(({ cluster, graph }) => {
+      const path = cluster == null ? '/' : `/clusters/${cluster.id}`;
+      return <Redirect to={path} />;
+    }),
   ),
 );
 
