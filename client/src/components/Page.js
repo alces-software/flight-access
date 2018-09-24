@@ -38,7 +38,7 @@ Page.propTypes = {
   cluster: PropTypes.object,
   graph: PropTypes.object,
   pageKey: PropTypes.string,
-  site: PropTypes.string,
+  site: PropTypes.object,
   title: PropTypes.string.isRequired,
 };
 

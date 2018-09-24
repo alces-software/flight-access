@@ -66,12 +66,12 @@ const GraphSelectionOption = ({ cluster, dispatch, graph }) => {
 
 GraphSelectionOption.propTypes = {
   cluster: PropTypes.shape({
-    id: PropTypes.oneOf([PropTypes.number, PropTypes.string]).isRequired,
+    id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
   }).isRequired,
   dispatch: PropTypes.func.isRequired,
   graph: PropTypes.shape({
     description: PropTypes.node,
-    id: PropTypes.oneOf([PropTypes.number, PropTypes.string]).isRequired,
+    id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
     subtitle: PropTypes.node,
     title: PropTypes.node.isRequired,
   }).isRequired,
