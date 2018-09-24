@@ -29,3 +29,26 @@ export const nodesAvailableQueue = {
   ],
   xAxisFormatter: 'timestampToHoursAndMinutes',
 };
+
+export const nodeSchedulerStatus = {
+  id: 'nodeSchedulerStatus',
+  graphType: 'stackedArea',
+  title: "Nodes scheduler status",
+  subtitle: "Status of the nodes for the scheduler",
+  description: "Compare the scheduler status of the nodes for each of your organizations clusters.",
+  chartSeries: [
+    {
+      field: 'nodesAvailableToScheduler',
+      name: 'Nodes available',
+      color: '#ff7f0e',
+      type: 'monotone',
+    },
+    {
+      field: 'nodesAvailableToQueueByNode',
+      name: 'Nodes in use',
+      color: '#0d6f0d',
+      type: 'monotone',
+    },
+  ],
+  xAxisFormatter: 'timestampToHoursAndMinutes',
+};

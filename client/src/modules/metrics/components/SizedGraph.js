@@ -15,11 +15,13 @@ import { withSize } from 'react-sizeme';
 import BarChart from '../components/BarChart';
 import BubbleChart from '../components/BubbleChart';
 import LineChart from '../components/LineChart';
+import StackedAreaChart from '../components/StackedArea';
 
 const graphTypes = {
   bar: BarChart,
   bubble: BubbleChart,
   line: LineChart,
+  stackedArea: StackedAreaChart,
 };
 
 const GraphWrapper = ({ graph, metrics, size, syncId, title }) => {
