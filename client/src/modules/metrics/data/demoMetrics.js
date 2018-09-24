@@ -1,4 +1,4 @@
-export const clusterOne = [
+export const demo = [
   {
     nodesAvailableToScheduler: 11,
     nodesAvailableToQueueByNode: 65,

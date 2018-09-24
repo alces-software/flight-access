@@ -6,11 +6,11 @@ import {
 function makeCompareData(graphId) {
   return [
     {
-      clusterId: 'clusterOne',
+      clusterId: 'demo',
       graphId: graphId,
     },
     {
-      clusterId: 'clusterTwo',
+      clusterId: 'pres',
       graphId: graphId,
     },
   ];
@@ -18,7 +18,7 @@ function makeCompareData(graphId) {
 
 const initialState = {
   selectedGraphId: null,
-  selectedClusterId: 'clusterOne',
+  selectedClusterId: 'demo',
   compare: [],
 };
 
