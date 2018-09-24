@@ -1,28 +1,16 @@
 import {
   CLUSTER_SELECTED,
+  COMPARISON_SELECTED,
   GRAPH_SELECTED,
 } from './actionTypes';
 
 import * as sites from './data/sites';
 
-function makeCompareData(graphId) {
-  return [
-    {
-      clusterId: 'demo',
-      graphId: graphId,
-    },
-    {
-      clusterId: 'pres',
-      graphId: graphId,
-    },
-  ];
-}
-
 const initialState = {
   selectedGraphId: null,
   selectedClusterId: null,
   selectedSiteId: Object.keys(sites)[0],
-  compare: [],
+  selectedComparrison: null,
 };
 
 function reducer(state=initialState, { type, payload }) {
@@ -33,11 +21,16 @@ function reducer(state=initialState, { type, payload }) {
         selectedClusterId: payload,
       };
 
+    case COMPARISON_SELECTED:
+      return {
+        ...state,
+        selectedComparrison: payload,
+      };
+
     case GRAPH_SELECTED:
       return {
         ...state,
         selectedGraphId: payload,
-        compare: makeCompareData(payload),
       };
 
     default:

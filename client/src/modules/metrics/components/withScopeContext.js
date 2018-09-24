@@ -4,11 +4,11 @@ import { renderRoutes } from 'react-router-config';
 
 import * as actions from '../actions';
 
-const Context = ({ route }) => {
+const ScopeContext = ({ route }) => {
   return renderRoutes(route.routes);
 };
 
-function withContext({
+function withScopeContext({
   mountAction,
   paramName,
   unmountAction,
@@ -42,16 +42,22 @@ function withContext({
     }),
   );
 
-  return enhance(Context);
+  return enhance(ScopeContext);
 }
 
-export const withClusterContext = withContext({
+export const withClusterContext = withScopeContext({
   mountAction: actions.clusterSelected,
   paramName: 'clusterId',
   unmountAction: actions.clusterDeselected,
 });
 
-export const withGraphContext = withContext({
+export const withComparisonContext = withScopeContext({
+  mountAction: actions.comparisonSelected,
+  paramName: 'comparisonId',
+  unmountAction: actions.comparisonDeselected,
+});
+
+export const withGraphContext = withScopeContext({
   mountAction: actions.graphSelected,
   paramName: 'graphId',
   unmountAction: actions.graphDeselected,

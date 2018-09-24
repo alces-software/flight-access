@@ -51,8 +51,8 @@ const routes = [
         path: '/',
         exact: true,
         component: metrics.pages.ClusterSelection,
-        title: (site) => site == null ? null : site.name,
-        pageKey: (site) => site == null ? null : site.id,
+        title: ({ site }) => site == null ? null : site.name,
+        pageKey: ({ site }) => site == null ? null : site.id,
       },
       {
         path: '/clusters/:clusterId',
@@ -62,8 +62,8 @@ const routes = [
             path: '/clusters/:clusterId',
             exact: true,
             component: metrics.pages.GraphSelection,
-            title: (site, cluster) => cluster == null ? null : cluster.name,
-            pageKey: (site, cluster) => cluster == null ? null : cluster.id,
+            title: ({ cluster }) => cluster == null ? null : cluster.name,
+            pageKey: ({ cluster }) => cluster == null ? null : cluster.id,
             key: 'hackContextEndpoint',
           },
           {
@@ -74,9 +74,8 @@ const routes = [
                 path: '/clusters/:clusterId/:graphId',
                 exact: true,
                 component: metrics.pages.Graph,
-                // XXX Are these correct?
-                title: (site, cluster, graph) => graph == null ? null : graph.title,
-                pageKey: (site, cluster, graph) => graph == null ? null : graph.id,
+                title: ({ graph }) => graph == null ? null : graph.title,
+                pageKey: ({ graph }) => graph == null ? null : graph.id,
                 key: 'hackContextEndpoint',
               },
             ],
@@ -84,16 +83,15 @@ const routes = [
         ]
       },
       {
-        path: '/compare/:graphId',
-        component: metrics.withGraphContext,
+        path: '/comparison/:comparisonId',
+        component: metrics.withComparisonContext,
         routes: [
           {
-            path: '/compare/:graphId',
+            path: '/comparison/:comparisonId',
             exact: true,
             component: metrics.pages.Compare,
-            // XXX Are these correct?
-            title: (graph) => graph == null ? null : graph.title,
-            pageKey: (graph) => graph == null ? null : graph.id,
+            title: ({ comparison }) => comparison == null ? null : comparison.title,
+            pageKey: ({ comparison }) => comparison == null ? null : comparison.id,
           },
         ],
       },

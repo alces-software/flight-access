@@ -20,9 +20,9 @@ import { LinkContainer } from 'flight-reactware';
 
 import * as actions from '../actions';
 
-const ClusterSelectionOption = ({ dispatch, cluster }) => {
-  const href = `/clusters/${cluster.id}`;
-  const onClick = () => dispatch(actions.clusterSelected(cluster.id));
+const ComparisonSelectionOption = ({ dispatch, comparison }) => {
+  const href = `/comparison/${comparison.id}`;
+  const onClick = () => dispatch(actions.comparisonSelected(comparison.id));
 
   return (
     <LinkContainer
@@ -32,23 +32,23 @@ const ClusterSelectionOption = ({ dispatch, cluster }) => {
       <Card>
         <CardBody>
           <CardTitle>
-            {cluster.name}
+            {comparison.title}
           </CardTitle>
           {
-            cluster.subtitle == null ? null : (
+            comparison.subtitle == null ? null : (
               <CardSubtitle>
-                {cluster.subtitle}
+                {comparison.subtitle}
               </CardSubtitle>
             )
           }
           <CardText>
-            {cluster.description}
+            {comparison.description}
           </CardText>
           <LinkContainer
             onClick={onClick}
             to={href}
           >
-            <Button color="primary" >View available metrics</Button>
+            <Button color="primary" >View comparison</Button>
           </LinkContainer>
         </CardBody>
       </Card>
@@ -56,14 +56,14 @@ const ClusterSelectionOption = ({ dispatch, cluster }) => {
   );
 };
 
-ClusterSelectionOption.propTypes = {
-  cluster: PropTypes.shape({
+ComparisonSelectionOption.propTypes = {
+  comparison: PropTypes.shape({
     description: PropTypes.node,
     id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-    name: PropTypes.node.isRequired,
     subtitle: PropTypes.node,
+    title: PropTypes.node.isRequired,
   }).isRequired,
   dispatch: PropTypes.func.isRequired,
 };
 
-export default connect()(ClusterSelectionOption);
+export default connect()(ComparisonSelectionOption);

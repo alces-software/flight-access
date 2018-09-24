@@ -59,11 +59,11 @@ ComparePage.defaultProps = {
 
 const enhance = compose(
   connect(createStructuredSelector({
-    comparisons: selectors.comparisons,
+    comparisons: selectors.selectedComparrisons,
   })),
 
   branch(
-    ({ comparisons }) => comparisons.length === 0,
+    ({ comparisons }) => comparisons == null,
     renderComponent(() => <Redirect to="/metrics" />),
   ),
 );

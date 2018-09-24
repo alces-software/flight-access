@@ -1,13 +1,14 @@
 import { createSelector } from 'reselect';
 
 import * as clusters from './data/clusters';
+import * as comparisons from './data/comparisons';
 import * as graphs from './data/graphs';
 import * as metrics from './data/metrics';
 import * as sites from './data/sites';
 import { NAME } from './constants';
 
 const metricsState = (state) => state[NAME];
-const compareData = (state) => metricsState(state).compare;
+const comparisonData = (state) => metricsState(state).selectedComparrison;
 const selectedClusterId = (state) => metricsState(state).selectedClusterId;
 const selectedGraphId = (state) => metricsState(state).selectedGraphId;
 const selectedSiteId = (state) => metricsState(state).selectedSiteId;
@@ -36,14 +37,26 @@ export const clusterMetrics = createSelector(
   (id) => id == null ? null : metrics[id],
 );
 
-export const comparisons = createSelector(
-  compareData,
+export const selectedComparrison = createSelector(
+  comparisonData,
 
   (data) => {
-    return data.map(({ clusterId, graphId }) => {
+    if (data == null) { return data; }
+    return comparisons[data.comparisonId];
+  }
+);
+
+// XXX Rename this.  It is too similarly named and yet to different to
+// selectedComparrison above.
+export const selectedComparrisons = createSelector(
+  comparisonData,
+
+  (data) => {
+    if (data == null) { return data; }
+    return data.clusterIds.map((clusterId) => {
       return {
         cluster: clusters[clusterId],
-        graph: graphs[graphId],
+        graph: comparisons[data.comparisonId],
       };
     });
   },
