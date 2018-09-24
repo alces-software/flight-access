@@ -89,7 +89,7 @@ const routes = [
           {
             path: '/comparison/:comparisonId',
             exact: true,
-            component: metrics.pages.Compare,
+            component: metrics.pages.Comparison,
             title: ({ comparison }) => comparison == null ? null : comparison.title,
             pageKey: ({ comparison }) => comparison == null ? null : comparison.id,
           },

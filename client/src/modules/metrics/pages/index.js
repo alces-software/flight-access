@@ -10,13 +10,13 @@
 // Any pages which are intended to only be used internally to this module
 // should not be included here.
 import ClusterSelection from './ClusterSelectionPage';
-import Compare from './ComparePage';
+import Comparison from './ComparisonPage';
 import Graph from './GraphPage';
 import GraphSelection from './GraphSelectionPage';
 
 export {
   ClusterSelection,
-  Compare,
+  Comparison,
   Graph,
   GraphSelection,
 };
