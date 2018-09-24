@@ -56,7 +56,7 @@ const routes = [
       },
       {
         path: '/clusters/:clusterId',
-        component: metrics.withClusterContext(),
+        component: metrics.withClusterContext,
         routes: [
           {
             path: '/clusters/:clusterId',
@@ -67,11 +67,11 @@ const routes = [
             key: 'hackContextEndpoint',
           },
           {
-            path: '/clusters/:clusterId/:graph',
-            component: metrics.withGraphContext(),
+            path: '/clusters/:clusterId/:graphId',
+            component: metrics.withGraphContext,
             routes: [
               {
-                path: '/clusters/:clusterId/:graph',
+                path: '/clusters/:clusterId/:graphId',
                 exact: true,
                 component: metrics.pages.Graph,
                 // XXX Are these correct?
@@ -84,11 +84,11 @@ const routes = [
         ]
       },
       {
-        path: '/compare/:graph',
-        component: metrics.withGraphContext(),
+        path: '/compare/:graphId',
+        component: metrics.withGraphContext,
         routes: [
           {
-            path: '/compare/:graph',
+            path: '/compare/:graphId',
             exact: true,
             component: metrics.pages.Compare,
             // XXX Are these correct?
