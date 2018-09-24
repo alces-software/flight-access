@@ -86,6 +86,7 @@ const BubbleLine = ({
   label,
   name,
   sizeRange,
+  syncId,
   chartSeries,
   width,
   xAxisFormatter,
@@ -93,6 +94,7 @@ const BubbleLine = ({
   <ScatterChart
     height={finalLine ? (60 + 24) : 60}
     margin={{ top: 10, right: 0, bottom: 0, left: 0 }}
+    syncId={syncId}
     width={width}
   >
     <XAxis
@@ -145,6 +147,7 @@ BubbleLine.propTypes = {
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   sizeRange: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
+  syncId: PropTypes.string,
   width: PropTypes.number.isRequired,
   xAxisFormatter: PropTypes.string.isRequired,
 };
@@ -157,8 +160,6 @@ const BubbleChart = ({ data, graph, syncId, width }) => {
   const sizeRange = [0, 255];
   const lineData = generateLineData(data);
   
-  console.log('lineData:', lineData);  // eslint-disable-line no-console
-
   return (
     <div>
       {
@@ -175,6 +176,7 @@ const BubbleChart = ({ data, graph, syncId, width }) => {
               label={line.label}
               name={line.name}
               sizeRange={sizeRange}
+              syncId={syncId}
               width={width}
               xAxisFormatter={graph.xAxisFormatter}
             />
