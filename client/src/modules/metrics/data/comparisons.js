@@ -13,3 +13,19 @@ export const nodesAvailable = {
   ],
   xAxisFormatter: 'timestampToHoursAndMinutes',
 };
+
+export const nodesAvailableQueue = {
+  id: 'nodesAvailableQueue',
+  graphType: 'bar',
+  title: "Nodes available to queue bynode.q",
+  subtitle: "Number of nodes available for use to the queue bynode.q",
+  description: "Compare the number of nodes available to the queue bynode.q for each of your organizations clusters.",
+  chartSeries: [
+    {
+      field: 'nodesAvailableToQueueByNode',
+      name: 'Nodes available (bynode.q)',
+      color: '#ff7f0e'
+    }
+  ],
+  xAxisFormatter: 'timestampToHoursAndMinutes',
+};
