@@ -56,24 +56,32 @@ const routes = [
       },
       {
         path: '/clusters/:clusterId',
-        exact: true,
-        component: metrics.pages.GraphSelection,
-        title: (site, cluster) => cluster == null ? null : cluster.name,
-        pageKey: (site, cluster) => cluster == null ? null : cluster.id,
-      },
-      {
-        path: '/clusters/:clusterId/:graph',
-        component: metrics.withGraphContext(),
+        component: metrics.withClusterContext(),
         routes: [
           {
-            path: '/clusters/:clusterId/:graph',
+            path: '/clusters/:clusterId',
             exact: true,
-            component: metrics.pages.Graph,
-            // XXX Are these correct?
-            title: (site, cluster, graph) => graph == null ? null : graph.title,
-            pageKey: (site, cluster, graph) => graph == null ? null : graph.id,
+            component: metrics.pages.GraphSelection,
+            title: (site, cluster) => cluster == null ? null : cluster.name,
+            pageKey: (site, cluster) => cluster == null ? null : cluster.id,
+            key: 'hackContextEndpoint',
           },
-        ],
+          {
+            path: '/clusters/:clusterId/:graph',
+            component: metrics.withGraphContext(),
+            routes: [
+              {
+                path: '/clusters/:clusterId/:graph',
+                exact: true,
+                component: metrics.pages.Graph,
+                // XXX Are these correct?
+                title: (site, cluster, graph) => graph == null ? null : graph.title,
+                pageKey: (site, cluster, graph) => graph == null ? null : graph.id,
+                key: 'hackContextEndpoint',
+              },
+            ],
+          },
+        ]
       },
       {
         path: '/compare/:graph',

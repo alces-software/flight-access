@@ -7,7 +7,7 @@ export function graphSelected(graphId) {
   };
 }
 
-export function graphDeselected(graphId) {
+export function graphDeselected() {
   return {
     type: actionTypes.GRAPH_SELECTED,
     payload: null,
@@ -21,7 +21,7 @@ export function clusterSelected(clusterId) {
   };
 }
 
-export function clusterDeselected(clusterId) {
+export function clusterDeselected() {
   return {
     type: actionTypes.CLUSTER_SELECTED,
     payload: null,

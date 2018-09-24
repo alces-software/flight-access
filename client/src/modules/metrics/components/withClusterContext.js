@@ -4,39 +4,39 @@ import { renderRoutes } from 'react-router-config';
 
 import * as actions from '../actions';
 
-const GraphContext = ({ route }) => {
+const ClusterContext = ({ route }) => {
   return renderRoutes(route.routes);
 };
 
-export default function withGraphContext() {
+export default function withClusterContext() {
   const enhance = compose(
     withProps(props => ({
-      graphId: props.match.params.graph,
+      clusterId: props.match.params.clusterId,
     })),
 
     connect(),
 
     lifecycle({
       componentWillMount: function componentDidMount() {
-        const { dispatch, graphId } = this.props;
-        dispatch(actions.graphSelected(graphId));
+        const { dispatch, clusterId } = this.props;
+        dispatch(actions.clusterSelected(clusterId));
       },
 
       componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
-        const { thisGraphId  } = this.props;
-        const { nextGraphId } = nextProps;
-        if (thisGraphId === nextGraphId) {
+        const { thisClusterId  } = this.props;
+        const { nextClusterId } = nextProps;
+        if (thisClusterId === nextClusterId) {
           // Nothing relevant has changed; nothing to do.
           return;
         }
-        this.props.dispatch(actions.graphSelected(nextGraphId));
+        this.props.dispatch(actions.clusterSelected(nextClusterId));
       },
 
       componentWillUnmount: function componentWillUnmount() {
-        this.props.dispatch(actions.graphDeselected());
+        this.props.dispatch(actions.clusterDeselected());
       },
     }),
   );
 
-  return enhance(GraphContext);
+  return enhance(ClusterContext);
 }
