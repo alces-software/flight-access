@@ -24,7 +24,10 @@ const ClusterOverviewPage = () => {
         key={cluster.id}
         md={6}
       >
-        <ClusterOverview cluster={cluster} />
+        <ClusterOverview
+          cluster={cluster}
+          timeframe="day"
+        />
       </Col>
     );
   });

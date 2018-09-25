@@ -49,7 +49,7 @@ export const clusterMetrics = createSelector(
     if (id == null) { return null; }
     const cm = metrics[id];
     switch (timeframe) {
-      case '28days':
+      case '4 weeks':
         return cm.slice(cm.length - ( 24 * 28 ));
 
       case 'fortnight':

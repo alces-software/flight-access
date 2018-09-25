@@ -1,7 +1,7 @@
 require 'pathname'
 require 'json'
 
-DATA_QUANTITY = 168  # Hours in a week.
+DATA_QUANTITY = 24 * 28  # One data point every hour for 28 days.
 CLUSTER_IDS = ['demo', 'pres']
 METRIC_NAMES = %w(
 nodesAvailableToScheduler
