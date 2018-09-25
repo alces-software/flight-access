@@ -29,6 +29,13 @@ export function clusterDeselected() {
   };
 }
 
+export function setTimeframe(timeframe) {
+  return {
+    type: actionTypes.TIMEFRAME_SET,
+    payload: timeframe,
+  };
+}
+
 // export function comparisonSelected(comparisonId) {
 //   return {
 //     type: actionTypes.COMPARISON_SELECTED,

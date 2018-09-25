@@ -16,6 +16,7 @@ import { createStructuredSelector } from 'reselect';
 
 import * as selectors from '../selectors';
 import SizedGraph from '../components/SizedGraph';
+import TimeframeSelect from '../components/TimeframeSelect';
 
 // eslint-disable-next-line react/prop-types
 let GraphWrapper = ({ graph, cluster, metrics }) => (
@@ -41,6 +42,7 @@ const ComparePage = ({ comparisons }) => {
         sections={[]}
         title={firstGraph.title}
       />
+      <TimeframeSelect />
       {comparisons.map((c, idx) => (
         <GraphWrapper
           cluster={c.cluster}

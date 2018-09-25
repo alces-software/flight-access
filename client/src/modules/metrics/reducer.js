@@ -2,6 +2,7 @@ import {
   CLUSTER_SELECTED,
   // COMPARISON_SELECTED,
   GRAPH_SELECTED,
+  TIMEFRAME_SET,
 } from './actionTypes';
 
 import * as sites from './data/sites';
@@ -10,6 +11,7 @@ const initialState = {
   selectedGraphId: null,
   selectedClusterId: null,
   selectedSiteId: Object.keys(sites)[0],
+  timeframe: '12 hours',
   // selectedComparrison: null,
 };
 
@@ -31,6 +33,12 @@ function reducer(state=initialState, { type, payload }) {
       return {
         ...state,
         selectedGraphId: payload,
+      };
+
+    case TIMEFRAME_SET:
+      return {
+        ...state,
+        timeframe: payload,
       };
 
     default:

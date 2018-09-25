@@ -41,14 +41,22 @@ function clusterId(state, params) {
   }
 }
 
+export function timeframe(state, params) {
+  return params.timeframe || metricsState(state).timeframe;
+}
+
+function parsedTimeframe(state, params) {
+  const [ amount, unit ] = timeframe(state, params).split(/ +/);
+  return { amount, unit };
+}
+
 export const clusterMetrics = createSelector(
   clusterId,
-  (state, props) => props.timeframe || '1 day',
+  parsedTimeframe,
 
-  (id, timeframe) => {
+  (id, { amount, unit }) => {
     if (id == null) { return null; }
     const cm = metrics[id];
-    const [amount, unit] = timeframe.split(/ +/);
     switch (unit) {
       case 'hour':
       case 'hours':

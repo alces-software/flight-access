@@ -6,12 +6,13 @@
  * All rights reserved, see LICENSE.txt.
  *===========================================================================*/
 import React from 'react';
-import { Container, Col } from 'reactstrap';
+import { Container, Col, Row } from 'reactstrap';
 import { compose } from 'recompose';
 
 import * as clusters from '../data/clusters';
 import EqualHeightRow from '../../../components/EqualHeightRow';
 import ClusterOverview from '../components/ClusterOverview';
+import TimeframeSelect from '../components/TimeframeSelect';
 
 const ClusterOverviewPage = () => {
   const clusterOverviews = Object.keys(clusters).map(clusterId => {
@@ -23,7 +24,6 @@ const ClusterOverviewPage = () => {
       >
         <ClusterOverview
           cluster={cluster}
-          timeframe="12 hours"
         />
       </Col>
     );
@@ -31,6 +31,15 @@ const ClusterOverviewPage = () => {
 
   return (
     <Container fluid >
+      <Row
+        style={{
+          marginBottom: '16px'
+        }}
+      >
+        <Col>
+          <TimeframeSelect />
+        </Col>
+      </Row>
       <EqualHeightRow>
         {clusterOverviews}
       </EqualHeightRow>
