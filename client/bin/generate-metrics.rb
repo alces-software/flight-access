@@ -4,9 +4,10 @@ require 'json'
 DATA_QUANTITY = 24 * 28  # One data point every hour for 28 days.
 CLUSTER_IDS = ['demo', 'pres']
 METRIC_NAMES = %w(
-nodesAvailableToScheduler
-nodesAvailableToQueueByNode
-nodesAvailableToQueueBySlot
+available_storage
+gpus_available
+job_wait_time
+load
 )
 INITIAL_TIMESTAMP = 1537398000
 
@@ -45,7 +46,6 @@ end
 
 def write(metrics)
   path = Pathname.new(__FILE__).join('../../src/modules/metrics/data/metrics.json')
-::STDERR.puts "=== path: #{(path).inspect rescue $!.message}"
   File.write(path, metrics.to_json)
 end
 

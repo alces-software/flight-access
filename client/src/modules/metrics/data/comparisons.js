@@ -11,7 +11,7 @@ export const nodesAvailable = {
   description: "Compare the busyness of your organization's clusters.",
   chartSeries: [
     {
-      field: 'nodesAvailableToScheduler',
+      field: 'load',
       name: 'Percentage load of cluster',
       color: '#ff7f0e'
     }
@@ -26,7 +26,7 @@ export const foo = {
   description: "Compare the available GPUs of your organization's clusters.",
   chartSeries: [
     {
-      field: 'nodesAvailableToScheduler',
+      field: 'gpus_available',
       name: 'Available GPUs',
       color: '#ff7f0e'
     }

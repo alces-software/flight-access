@@ -25,7 +25,7 @@ export const busyness = {
   },
   chartSeries: [
     {
-      field: 'nodesAvailableToScheduler',
+      field: 'load',
       name: 'Percentage load of cluster',
       color: '#ff7f0e'
     },
@@ -40,7 +40,7 @@ export const gpusAvailable = {
   description: "Compare the available GPUs of your organization's clusters.",
   chartSeries: [
     {
-      field: 'nodesAvailableToQueueByNode',
+      field: 'gpus_available',
       name: 'Available GPUs',
       color: '#ff7f0e'
     }
@@ -55,7 +55,7 @@ export const waitTime = {
   description: "The average length of time a job waits after being submitted.",
   chartSeries: [
     {
-      field: 'nodesAvailableToQueueBySlot',
+      field: 'job_wait_time',
       name: 'Available GPUs',
       color: '#ff7f0e'
     }
@@ -70,7 +70,7 @@ export const availableStorage = {
   description: "The shared cluster storage available in GiBs.",
   chartSeries: [
     {
-      field: 'nodesAvailableToScheduler',
+      field: 'available_storage',
       name: 'Available GPUs',
       color: '#ff7f0e'
     }
