@@ -15,65 +15,60 @@
 //  - jobs queued
 //  - jobs running
 
-export const nodesAvailable = {
-  id: 'nodesAvailable',
-  graphType: 'line',
-  title: "Nodes available to scheduler",
-  subtitle: "Number of nodes available for use by the scheduler",
+export const busyness = {
+  id: 'busyness',
+  graphType: 'bar',
+  title: "Percentage load of cluster",
+  description: "Compare the busyness of your organization's clusters.",
   chartSeries: [
     {
       field: 'nodesAvailableToScheduler',
-      name: 'Nodes available',
-      color: '#ff7f0e'
-    }
-  ],
-  xAxisFormatter: 'timestampToHoursAndMinutes',
-};
-
-export const nodesAvailableQueue = {
-  id: 'nodesAvailableQueue',
-  graphType: 'bar',
-  title: "Nodes available to queue bynode.q",
-  subtitle: "Number of nodes available for use to the queue bynode.q",
-  chartSeries: [
-    {
-      field: 'nodesAvailableToQueueByNode',
-      name: 'Nodes available (bynode.q)',
-      color: '#ff7f0e'
-    }
-  ],
-  xAxisFormatter: 'timestampToHoursAndMinutes',
-};
-
-export const nodesAvailableAllQueues = {
-  id: 'nodesAvailableAllQueues',
-  graphType: 'bar',
-  title: "Nodes available for each queue",
-  subtitle: "Number of nodes available for use for each queue",
-  chartSeries: [
-    {
-      field: 'nodesAvailableToQueueByNode',
-      name: 'Nodes available (bynode.q)',
-      color: '#7f7f0e'
-    },
-    {
-      field: 'nodesAvailableToQueueBySlot',
-      name: 'Nodes available (byslot.q)',
+      name: 'Percentage load of cluster',
       color: '#ff7f0e'
     },
   ],
   xAxisFormatter: 'timestampToHoursAndMinutes',
 };
 
-export const bubble = {
-  id: 'bubble',
-  graphType: 'bubble',
-  title: "Node availability last week",
-  subtitle: "Number of nodes available for use last week",
+export const gpusAvailable = {
+  id: 'gpusAvailable',
+  graphType: 'bar',
+  title: "GPUs available",
+  description: "Compare the available GPUs of your organization's clusters.",
   chartSeries: [
     {
       field: 'nodesAvailableToScheduler',
-      name: 'Nodes available',
+      name: 'Available GPUs',
+      color: '#ff7f0e'
+    }
+  ],
+  xAxisFormatter: 'timestampToHoursAndMinutes',
+};
+
+export const waitTime = {
+  id: 'waitTime',
+  graphType: 'bar',
+  title: "Average job wait time",
+  description: "The average length of time a job waits after being submitted.",
+  chartSeries: [
+    {
+      field: 'nodesAvailableToScheduler',
+      name: 'Available GPUs',
+      color: '#ff7f0e'
+    }
+  ],
+  xAxisFormatter: 'timestampToHoursAndMinutes',
+};
+
+export const availableStorage = {
+  id: 'availableStorage',
+  graphType: 'bar',
+  title: "Available cluster storage",
+  description: "The shared cluster storage available in GiBs.",
+  chartSeries: [
+    {
+      field: 'nodesAvailableToScheduler',
+      name: 'Available GPUs',
       color: '#ff7f0e'
     }
   ],

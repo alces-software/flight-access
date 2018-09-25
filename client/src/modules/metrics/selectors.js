@@ -31,8 +31,18 @@ export const selectedSite = createSelector(
   (id) => id == null ? null : sites[id],
 );
 
+function clusterId(state, params) {
+  if (params.cluster) {
+    return params.cluster.id;
+  } else if (params.clusterId) {
+    return params.clusterId;
+  } else {
+    return selectedClusterId(state);
+  }
+}
+
 export const clusterMetrics = createSelector(
-  selectedClusterId,
+  clusterId,
 
   (id) => id == null ? null : metrics[id],
 );

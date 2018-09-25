@@ -50,7 +50,7 @@ const routes = [
       {
         path: '/',
         exact: true,
-        component: metrics.pages.ClusterSelection,
+        component: metrics.pages.ClusterOverview,
         title: ({ site }) => site == null ? null : site.name,
         pageKey: ({ site }) => site == null ? null : site.id,
       },
