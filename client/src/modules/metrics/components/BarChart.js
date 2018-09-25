@@ -29,6 +29,10 @@ const BarChart = ({ data, graph, height, syncId, tiny, width }) => {
     />
   ));
 
+  const domain = graph.yAxis && graph.yAxis.domain ?
+    graph.yAxis.domain :
+    ['auto', 'auto'];
+
   return (
     <BaseBarChart
       data={data}
@@ -38,7 +42,10 @@ const BarChart = ({ data, graph, height, syncId, tiny, width }) => {
       width={width}
     >
       { tiny ? null : <XAxis dataKey={timeFormatters[graph.xAxisFormatter]} /> }
-      { tiny ? null : <YAxis /> }
+      <YAxis
+        domain={domain}
+        hide={tiny}
+      />
       { tiny ? null : <CartesianGrid strokeDasharray="3 3" /> }
       { tiny ? null : <Tooltip /> }
       { tiny ? null : <Legend /> }

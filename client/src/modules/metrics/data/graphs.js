@@ -20,6 +20,9 @@ export const busyness = {
   graphType: 'bar',
   title: "Percentage load of cluster",
   description: "Compare the busyness of your organization's clusters.",
+  yAxis: {
+    domain: [0, 100],
+  },
   chartSeries: [
     {
       field: 'nodesAvailableToScheduler',

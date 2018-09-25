@@ -35,6 +35,10 @@ const StackedAreaChart = ({ data, graph, height, syncId, tiny, width }) => {
     />
   ));
 
+  const domain = graph.yAxis && graph.yAxis.domain ?
+    graph.yAxis.domain :
+    ['auto', 'auto'];
+
   return (
     <BaseAreaChart
       data={data}
@@ -45,7 +49,11 @@ const StackedAreaChart = ({ data, graph, height, syncId, tiny, width }) => {
       width={width}
     >
       { tiny ? null : <XAxis dataKey={timeFormatters[graph.xAxisFormatter]} /> }
-      { tiny ? null : <YAxis tickFormatter={toPercent} /> }
+      <YAxis
+        domain={domain}
+        hide={tiny}
+        tickFormatter={toPercent}
+      />
       { tiny ? null : <CartesianGrid strokeDasharray="3 3" /> }
       { tiny ? null : <Tooltip /> }
       { tiny ? null : <Legend /> }
