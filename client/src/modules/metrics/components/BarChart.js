@@ -36,7 +36,7 @@ const BarChart = ({ data, graph, height, syncId, tiny, width }) => {
   return (
     <BaseBarChart
       data={data}
-      height={height || width / 2}
+      height={height || width / 4}
       margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
       syncId={syncId}
       width={width}

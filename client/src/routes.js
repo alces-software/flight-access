@@ -103,6 +103,19 @@ const routes = [
           },
         ],
       },
+      {
+        path: '/graph/:graphId',
+        component: metrics.withGraphContext,
+        routes: [
+          {
+            path: '/graph/:graphId',
+            exact: true,
+            component: metrics.pages.Comparison,
+            title: ({ graph }) => graph == null ? null : graph.title,
+            pageKey: ({ graph }) => graph == null ? null : graph.id,
+          },
+        ],
+      },
       notFoundRouteConfig,
     ],
   },

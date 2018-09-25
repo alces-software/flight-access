@@ -16,33 +16,37 @@ import { createStructuredSelector } from 'reselect';
 
 import * as selectors from '../selectors';
 import SizedGraph from '../components/SizedGraph';
-import metrics from '../data/metrics.json';
+
+// eslint-disable-next-line react/prop-types
+let GraphWrapper = ({ graph, cluster, metrics }) => (
+  <SizedGraph
+    graph={graph}
+    metrics={metrics}
+    syncId="someValue"
+    title={cluster.name}
+  />
+);
+GraphWrapper = connect(createStructuredSelector({
+  metrics: selectors.clusterMetrics,
+}))(GraphWrapper);
 
 const ComparePage = ({ comparisons }) => {
-  const overview = (
-    <span>
-      {/* {graph.subtitle} for {cluster.name} */}
-    </span>
-  );
-  const title = (
-    <span>
-      Comparing {comparisons.length} graphs
-    </span>
-  );
+  // Assume that the graphs are all the same.
+  const firstGraph = comparisons[0].graph;
+
   return (
     <Container>
       <PageHeading
-        overview={overview}
+        overview={firstGraph.description}
         sections={[]}
-        title={title}
+        title={firstGraph.title}
       />
       {comparisons.map((c, idx) => (
-        <SizedGraph
+        <GraphWrapper
+          cluster={c.cluster}
           graph={c.graph}
           key={idx}
-          metrics={metrics[c.cluster.id]}
           syncId="someValue"
-          title={c.cluster.name}
         />
       ))}
     </Container>
@@ -62,8 +66,8 @@ const enhance = compose(
   })),
 
   branch(
-    ({ comparisons }) => comparisons == null,
-    renderComponent(() => <Redirect to="/metrics" />),
+    ({ comparisons }) => comparisons == null || comparisons.length === 0,
+    renderComponent(() => <Redirect to="/" />),
   ),
 );
 

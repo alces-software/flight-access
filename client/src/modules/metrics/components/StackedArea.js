@@ -42,7 +42,7 @@ const StackedAreaChart = ({ data, graph, height, syncId, tiny, width }) => {
   return (
     <BaseAreaChart
       data={data}
-      height={height || width / 2}
+      height={height || width / 4}
       margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
       stackOffset="expand"
       syncId={syncId}

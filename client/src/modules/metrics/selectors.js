@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 
 import * as clusters from './data/clusters';
-import * as comparisons from './data/comparisons';
+// import * as comparisons from './data/comparisons';
 import * as graphs from './data/graphs';
 import * as sites from './data/sites';
 import metrics from './data/metrics.json';
@@ -75,7 +75,7 @@ export const selectedComparrison = createSelector(
 
   (data) => {
     if (data == null) { return data; }
-    return comparisons[data.comparisonId];
+    return graphs[data.comparisonId];
   }
 );
 
@@ -89,7 +89,7 @@ export const selectedComparrisons = createSelector(
     return data.clusterIds.map((clusterId) => {
       return {
         cluster: clusters[clusterId],
-        graph: comparisons[data.comparisonId],
+        graph: graphs[data.comparisonId],
       };
     });
   },
