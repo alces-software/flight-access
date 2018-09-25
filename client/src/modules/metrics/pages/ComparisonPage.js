@@ -16,8 +16,7 @@ import { createStructuredSelector } from 'reselect';
 
 import * as selectors from '../selectors';
 import SizedGraph from '../components/SizedGraph';
-
-import * as metrics from '../data/metrics';
+import metrics from '../data/metrics.json';
 
 const ComparePage = ({ comparisons }) => {
   const overview = (

@@ -3,8 +3,8 @@ import { createSelector } from 'reselect';
 import * as clusters from './data/clusters';
 import * as comparisons from './data/comparisons';
 import * as graphs from './data/graphs';
-import * as metrics from './data/metrics';
 import * as sites from './data/sites';
+import metrics from './data/metrics.json';
 import { NAME } from './constants';
 
 const metricsState = (state) => state[NAME];
@@ -43,8 +43,27 @@ function clusterId(state, params) {
 
 export const clusterMetrics = createSelector(
   clusterId,
+  (state, props) => props.timeframe || 'day',
 
-  (id) => id == null ? null : metrics[id],
+  (id, timeframe) => {
+    if (id == null) { return null; }
+    const cm = metrics[id];
+    switch (timeframe) {
+      case '28days':
+        return cm.slice(cm.length - ( 24 * 28 ));
+
+      case 'fortnight':
+        return cm.slice(cm.length - ( 24 * 14 ));
+
+      case 'week':
+        return cm.slice(cm.length - ( 24 * 7 ));
+
+      case 'day':
+      default:
+        return cm.slice(cm.length - 24);
+        // eslint-disable-next-line no-unreachable
+    };
+  },
 );
 
 export const selectedComparrison = createSelector(
