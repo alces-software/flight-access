@@ -4,10 +4,18 @@ import styled from 'styled-components';
 import { Button } from 'reactstrap';
 import { LinkContainer } from 'flight-reactware';
 
-const CallToAction = styled(({ children, className, icon, to, ...buttonProps }) => {
+const CallToAction = styled(({
+  children,
+  className,
+  icon,
+  onClick,
+  to,
+  ...buttonProps,
+}) => {
   return (
     <LinkContainer 
       className={className}
+      onClick={onClick}
       to={to}
     >
       <Button
