@@ -10,10 +10,7 @@ import { Container, Col } from 'reactstrap';
 import { compose } from 'recompose';
 
 import * as clusters from '../data/clusters';
-// import * as comparisons from '../data/comparisons';
 import EqualHeightRow from '../../../components/EqualHeightRow';
-// import ClusterSelectionOption from '../components/ClusterSelectionOption';
-// import ComparisonSelectionOption from '../components/ComparisonSelectionOption';
 import ClusterOverview from '../components/ClusterOverview';
 
 const ClusterOverviewPage = () => {
@@ -26,7 +23,7 @@ const ClusterOverviewPage = () => {
       >
         <ClusterOverview
           cluster={cluster}
-          timeframe="day"
+          timeframe="12 hours"
         />
       </Col>
     );

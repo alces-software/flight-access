@@ -43,23 +43,27 @@ function clusterId(state, params) {
 
 export const clusterMetrics = createSelector(
   clusterId,
-  (state, props) => props.timeframe || 'day',
+  (state, props) => props.timeframe || '1 day',
 
   (id, timeframe) => {
     if (id == null) { return null; }
     const cm = metrics[id];
-    switch (timeframe) {
-      case '4 weeks':
-        return cm.slice(cm.length - ( 24 * 28 ));
-
-      case 'fortnight':
-        return cm.slice(cm.length - ( 24 * 14 ));
-
-      case 'week':
-        return cm.slice(cm.length - ( 24 * 7 ));
+    const [amount, unit] = timeframe.split(/ +/);
+    switch (unit) {
+      case 'hour':
+      case 'hours':
+        return cm.slice(cm.length - amount);
 
       case 'day':
+      case 'days':
+        return cm.slice(cm.length - ( 24 * amount ));
+
+      case 'week':
+      case 'weeks':
+        return cm.slice(cm.length - ( 24 * 7 * amount ));
+
       default:
+        // One days worth of data.
         return cm.slice(cm.length - 24);
         // eslint-disable-next-line no-unreachable
     };
