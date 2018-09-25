@@ -59,6 +59,14 @@ const routes = [
         component: metrics.withClusterContext,
         routes: [
           {
+            path: '/clusters/:clusterId/access',
+            exact: true,
+            component: metrics.pages.Access,
+            title: ({ cluster }) => cluster == null ? null : cluster.name,
+            pageKey: ({ cluster }) => cluster == null ? null : cluster.id,
+            key: 'hackContextEndpoint',
+          },
+          {
             path: '/clusters/:clusterId',
             exact: true,
             component: metrics.pages.GraphSelection,
