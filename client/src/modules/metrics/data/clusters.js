@@ -1,11 +1,11 @@
 export const demo = {
   id: 'demo',
-  name: 'Demo Cluster',
-  description: 'Alces Flight demonstration cluster.',
+  name: 'Megatron',
+  description: 'On-site HPC cluster.',
 };
 
 export const pres = {
   id: 'pres',
-  name: 'Presentation Cluster',
-  description: 'Alces Flight presentation cluster.',
+  name: 'Optimus',
+  description: 'AWS hosted HPC cluster.',
 };
