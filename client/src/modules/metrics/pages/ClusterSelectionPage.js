@@ -9,24 +9,24 @@ import React from 'react';
 import { Container, Col } from 'reactstrap';
 import { compose } from 'recompose';
 
-import * as clusters from '../data/clusters';
+// import * as clusters from '../data/clusters';
 import * as comparisons from '../data/comparisons';
 import EqualHeightRow from '../../../components/EqualHeightRow';
-import ClusterSelectionOption from '../components/ClusterSelectionOption';
+// import ClusterSelectionOption from '../components/ClusterSelectionOption';
 import ComparisonSelectionOption from '../components/ComparisonSelectionOption';
 
 const ClusterSelectionPage = () => {
-  const clusterOptions = Object.keys(clusters).map(clusterId => {
-    const cluster = clusters[clusterId];
-    return (
-      <Col
-        key={cluster.id}
-        md={4}
-      >
-        <ClusterSelectionOption cluster={cluster} />
-      </Col>
-    );
-  });
+  // const clusterOptions = Object.keys(clusters).map(clusterId => {
+  //   const cluster = clusters[clusterId];
+  //   return (
+  //     <Col
+  //       key={cluster.id}
+  //       md={4}
+  //     >
+  //       <ClusterSelectionOption cluster={cluster} />
+  //     </Col>
+  //   );
+  // });
 
   const comparisonOptions = Object.keys(comparisons).map(comparisonId => {
     const comparison = comparisons[comparisonId];
@@ -42,12 +42,14 @@ const ClusterSelectionPage = () => {
 
   return (
     <Container fluid >
+      {/*
       <h4>
         Clusters
       </h4>
       <EqualHeightRow>
         {clusterOptions}
       </EqualHeightRow>
+      */}
       <h4>
         Comparisons
       </h4>
