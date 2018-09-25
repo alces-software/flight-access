@@ -1,5 +1,5 @@
 import * as actionTypes from './actionTypes';
-import * as clusters from './data/clusters';
+// import * as clusters from './data/clusters';
 
 export function graphSelected(graphId) {
   return {
@@ -29,19 +29,19 @@ export function clusterDeselected() {
   };
 }
 
-export function comparisonSelected(comparisonId) {
-  return {
-    type: actionTypes.COMPARISON_SELECTED,
-    payload: {
-      comparisonId: comparisonId,
-      clusterIds: Object.keys(clusters),
-    }
-  };
-}
+// export function comparisonSelected(comparisonId) {
+//   return {
+//     type: actionTypes.COMPARISON_SELECTED,
+//     payload: {
+//       comparisonId: comparisonId,
+//       clusterIds: Object.keys(clusters),
+//     }
+//   };
+// }
 
-export function comparisonDeselected() {
-  return {
-    type: actionTypes.COMPARISON_SELECTED,
-    payload: null,
-  };
-}
+// export function comparisonDeselected() {
+//   return {
+//     type: actionTypes.COMPARISON_SELECTED,
+//     payload: null,
+//   };
+// }

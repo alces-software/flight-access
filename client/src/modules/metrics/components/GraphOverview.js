@@ -36,7 +36,7 @@ const SpacedCardText = styled(CardText)`
 
 const GraphOverview = ({ dispatch, graph, metrics }) => {
   const href = `/graph/${graph.id}`;
-  const onClick = () => dispatch(actions.comparisonSelected(graph.id));
+  const onClick = () => dispatch(actions.graphSelected(graph.id));
 
   return (
     <SpacedCol md={6}>

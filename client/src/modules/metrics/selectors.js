@@ -8,7 +8,7 @@ import metrics from './data/metrics.json';
 import { NAME } from './constants';
 
 const metricsState = (state) => state[NAME];
-const comparisonData = (state) => metricsState(state).selectedComparrison;
+// const comparisonData = (state) => metricsState(state).selectedComparrison;
 const selectedClusterId = (state) => metricsState(state).selectedClusterId;
 const selectedGraphId = (state) => metricsState(state).selectedGraphId;
 const selectedSiteId = (state) => metricsState(state).selectedSiteId;
@@ -70,26 +70,26 @@ export const clusterMetrics = createSelector(
   },
 );
 
-export const selectedComparrison = createSelector(
-  comparisonData,
+// export const selectedComparrison = createSelector(
+//   comparisonData,
 
-  (data) => {
-    if (data == null) { return data; }
-    return graphs[data.comparisonId];
-  }
-);
+//   (data) => {
+//     if (data == null) { return data; }
+//     return graphs[data.comparisonId];
+//   }
+// );
 
 // XXX Rename this.  It is too similarly named and yet to different to
 // selectedComparrison above.
 export const selectedComparrisons = createSelector(
-  comparisonData,
+  selectedGraph,
 
-  (data) => {
-    if (data == null) { return data; }
-    return data.clusterIds.map((clusterId) => {
+  (graph) => {
+    if (graph == null) { return graph; }
+    return Object.keys(clusters).map((clusterId) => {
       return {
         cluster: clusters[clusterId],
-        graph: graphs[data.comparisonId],
+        graph: graph,
       };
     });
   },

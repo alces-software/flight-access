@@ -1,6 +1,6 @@
 import {
   CLUSTER_SELECTED,
-  COMPARISON_SELECTED,
+  // COMPARISON_SELECTED,
   GRAPH_SELECTED,
 } from './actionTypes';
 
@@ -10,7 +10,7 @@ const initialState = {
   selectedGraphId: null,
   selectedClusterId: null,
   selectedSiteId: Object.keys(sites)[0],
-  selectedComparrison: null,
+  // selectedComparrison: null,
 };
 
 function reducer(state=initialState, { type, payload }) {
@@ -21,11 +21,11 @@ function reducer(state=initialState, { type, payload }) {
         selectedClusterId: payload,
       };
 
-    case COMPARISON_SELECTED:
-      return {
-        ...state,
-        selectedComparrison: payload,
-      };
+    // case COMPARISON_SELECTED:
+    //   return {
+    //     ...state,
+    //     selectedComparrison: payload,
+    //   };
 
     case GRAPH_SELECTED:
       return {

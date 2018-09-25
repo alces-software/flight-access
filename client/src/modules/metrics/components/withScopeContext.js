@@ -51,11 +51,11 @@ export const withClusterContext = withScopeContext({
   unmountAction: actions.clusterDeselected,
 });
 
-export const withComparisonContext = withScopeContext({
-  mountAction: actions.comparisonSelected,
-  paramName: 'comparisonId',
-  unmountAction: actions.comparisonDeselected,
-});
+// export const withComparisonContext = withScopeContext({
+//   mountAction: actions.comparisonSelected,
+//   paramName: 'comparisonId',
+//   unmountAction: actions.comparisonDeselected,
+// });
 
 export const withGraphContext = withScopeContext({
   mountAction: actions.graphSelected,

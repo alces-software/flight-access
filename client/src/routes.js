@@ -66,43 +66,43 @@ const routes = [
             pageKey: ({ cluster }) => cluster == null ? null : cluster.id,
             key: 'hackContextEndpoint',
           },
-          {
-            path: '/clusters/:clusterId',
-            exact: true,
-            component: metrics.pages.GraphSelection,
-            title: ({ cluster }) => cluster == null ? null : cluster.name,
-            pageKey: ({ cluster }) => cluster == null ? null : cluster.id,
-            key: 'hackContextEndpoint',
-          },
-          {
-            path: '/clusters/:clusterId/:graphId',
-            component: metrics.withGraphContext,
-            routes: [
-              {
-                path: '/clusters/:clusterId/:graphId',
-                exact: true,
-                component: metrics.pages.Graph,
-                title: ({ graph }) => graph == null ? null : graph.title,
-                pageKey: ({ graph }) => graph == null ? null : graph.id,
-                key: 'hackContextEndpoint',
-              },
-            ],
-          },
+          // {
+          //   path: '/clusters/:clusterId',
+          //   exact: true,
+          //   component: metrics.pages.GraphSelection,
+          //   title: ({ cluster }) => cluster == null ? null : cluster.name,
+          //   pageKey: ({ cluster }) => cluster == null ? null : cluster.id,
+          //   key: 'hackContextEndpoint',
+          // },
+          // {
+          //   path: '/clusters/:clusterId/:graphId',
+          //   component: metrics.withGraphContext,
+          //   routes: [
+          //     {
+          //       path: '/clusters/:clusterId/:graphId',
+          //       exact: true,
+          //       component: metrics.pages.Graph,
+          //       title: ({ graph }) => graph == null ? null : graph.title,
+          //       pageKey: ({ graph }) => graph == null ? null : graph.id,
+          //       key: 'hackContextEndpoint',
+          //     },
+          //   ],
+          // },
         ]
       },
-      {
-        path: '/comparison/:comparisonId',
-        component: metrics.withComparisonContext,
-        routes: [
-          {
-            path: '/comparison/:comparisonId',
-            exact: true,
-            component: metrics.pages.Comparison,
-            title: ({ comparison }) => comparison == null ? null : comparison.title,
-            pageKey: ({ comparison }) => comparison == null ? null : comparison.id,
-          },
-        ],
-      },
+      // {
+      //   path: '/comparison/:comparisonId',
+      //   component: metrics.withComparisonContext,
+      //   routes: [
+      //     {
+      //       path: '/comparison/:comparisonId',
+      //       exact: true,
+      //       component: metrics.pages.Comparison,
+      //       title: ({ comparison }) => comparison == null ? null : comparison.title,
+      //       pageKey: ({ comparison }) => comparison == null ? null : comparison.id,
+      //     },
+      //   ],
+      // },
       {
         path: '/graph/:graphId',
         component: metrics.withGraphContext,

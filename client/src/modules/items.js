@@ -7,7 +7,7 @@ const currentSite = process.env.REACT_APP_SITE;
 
 export default function({
   cluster,
-  comparison,
+  // comparison,
   graph,
   site,
 }) {
@@ -25,18 +25,17 @@ export default function({
     const item = makeItem(c.name, 'server', link, null, c.id);
     items.push(item);
   }
-  if (cluster && graph) {
-    const c = cluster;
+  if (graph) {
     const g = graph;
-    const link = makeLink(currentSite, `/clusters/${c.id}/${g.id}`);
+    const link = makeLink(currentSite, `/graphs/${g.id}`);
     const item = makeItem(g.title, 'line-chart', link, null, g.id);
     items.push(item);
   }
-  if (comparison) {
-    const c = comparison;
-    const link = makeLink(currentSite, `/comparisons/${c.id}`);
-    const item = makeItem(c.title, 'lightbulb-o', link, null, c.id);
-    items.push(item);
-  }
+  // if (comparison) {
+  //   const c = comparison;
+  //   const link = makeLink(currentSite, `/comparisons/${c.id}`);
+  //   const item = makeItem(c.title, 'lightbulb-o', link, null, c.id);
+  //   items.push(item);
+  // }
   return items;
 }

@@ -69,22 +69,22 @@ const productName = process.env.REACT_APP_PRODUCT_NAME;
 
 const propTypes = {
   cluster: PropTypes.object,
-  comparison: PropTypes.object,
+  // comparison: PropTypes.object,
   graph: PropTypes.object,
   location: PropTypes.object,
   route: PropTypes.object,
   site: PropTypes.object,
 };
 
-const App = ({ cluster, comparison, graph, location, route, site }) => {
+const App = ({ cluster, graph, location, route, site }) => {
   const branch = matchRoutes(routes, location.pathname);
   const lastRouteComponent = branch[branch.length - 1].route;
 
   const pageKey = isFunction(lastRouteComponent.pageKey) ?
-    lastRouteComponent.pageKey({ site, cluster, comparison, graph }) :
+    lastRouteComponent.pageKey({ site, cluster, graph }) :
     lastRouteComponent.pageKey;
   const title = isFunction(lastRouteComponent.title) ?
-    lastRouteComponent.title({ site, cluster, comparison, graph }) :
+    lastRouteComponent.title({ site, cluster, graph }) :
     lastRouteComponent.title;
 
   return (
@@ -104,7 +104,7 @@ const App = ({ cluster, comparison, graph, location, route, site }) => {
         </Helmet>
         <SitePage
           cluster={cluster}
-          comparison={comparison}
+          // comparison={comparison}
           graph={graph}
           pageKey={pageKey}
           site={site}
@@ -132,7 +132,7 @@ const enhance = compose(
 
   connect(createStructuredSelector({
     cluster: metrics.selectors.selectedCluster,
-    comparison: metrics.selectors.selectedComparrison,
+    // comparison: metrics.selectors.selectedComparrison,
     graph: metrics.selectors.selectedGraph,
     site: metrics.selectors.selectedSite,
   })),

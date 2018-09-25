@@ -10,13 +10,13 @@ import getItems from '../modules/items';
 const Page = ({
   children,
   cluster,
-  comparison,
+  // comparison,
   graph,
   pageKey,
   title,
   site,
 }) => {
-  const items = getItems({ site, cluster, comparison, graph });
+  const items = getItems({ site, cluster, graph });
   return (
     <div>
       <Helmet>
@@ -37,7 +37,7 @@ const Page = ({
 Page.propTypes = {
   children: PropTypes.node.isRequired,
   cluster: PropTypes.object,
-  comparison: PropTypes.object,
+  // comparison: PropTypes.object,
   graph: PropTypes.object,
   pageKey: PropTypes.string,
   site: PropTypes.object,

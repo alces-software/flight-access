@@ -11,16 +11,16 @@
 // should not be included here.
 import Access from './AccessPage';
 import ClusterOverview from './ClusterOverviewPage';
-import ClusterSelection from './ClusterSelectionPage';
+// import ClusterSelection from './ClusterSelectionPage';
 import Comparison from './ComparisonPage';
-import Graph from './GraphPage';
-import GraphSelection from './GraphSelectionPage';
+// import Graph from './GraphPage';
+// import GraphSelection from './GraphSelectionPage';
 
 export {
   Access,
   ClusterOverview,
-  ClusterSelection,
+  // ClusterSelection,
   Comparison,
-  Graph,
-  GraphSelection,
+  // Graph,
+  // GraphSelection,
 };
