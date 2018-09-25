@@ -123,7 +123,7 @@ const BubbleLine = ({
       type="number"
     />
     {
-      tiny || (
+      tiny ? null : (
         <Tooltip
           cursor={{ strokeDasharray: '3 3' }}
           wrapperStyle={{ zIndex: 100 }}

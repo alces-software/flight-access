@@ -44,11 +44,11 @@ const StackedAreaChart = ({ data, graph, height, syncId, tiny, width }) => {
       syncId={syncId}
       width={width}
     >
-      { tiny || <XAxis dataKey={timeFormatters[graph.xAxisFormatter]} /> }
-      { tiny || <YAxis tickFormatter={toPercent} /> }
-      { tiny || <CartesianGrid strokeDasharray="3 3" /> }
-      { tiny || <Tooltip /> }
-      { tiny || <Legend /> }
+      { tiny ? null : <XAxis dataKey={timeFormatters[graph.xAxisFormatter]} /> }
+      { tiny ? null : <YAxis tickFormatter={toPercent} /> }
+      { tiny ? null : <CartesianGrid strokeDasharray="3 3" /> }
+      { tiny ? null : <Tooltip /> }
+      { tiny ? null : <Legend /> }
       {areas}
     </BaseAreaChart>
   );
@@ -63,7 +63,7 @@ StackedAreaChart.propTypes = {
       name: PropTypes.string.isRequired,
     })).isRequired,
   }).isRequired,
-  height: PropTypes.number.isRequired,
+  height: PropTypes.number,
   syncId: PropTypes.string,
   tiny: PropTypes.bool,
   width: PropTypes.number.isRequired,
