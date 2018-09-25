@@ -37,7 +37,7 @@ export const gpusAvailable = {
   description: "Compare the available GPUs of your organization's clusters.",
   chartSeries: [
     {
-      field: 'nodesAvailableToScheduler',
+      field: 'nodesAvailableToQueueByNode',
       name: 'Available GPUs',
       color: '#ff7f0e'
     }
@@ -52,7 +52,7 @@ export const waitTime = {
   description: "The average length of time a job waits after being submitted.",
   chartSeries: [
     {
-      field: 'nodesAvailableToScheduler',
+      field: 'nodesAvailableToQueueBySlot',
       name: 'Available GPUs',
       color: '#ff7f0e'
     }

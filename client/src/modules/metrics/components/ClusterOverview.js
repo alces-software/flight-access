@@ -8,57 +8,35 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
-  // Button,
   Card,
   CardBody,
   CardSubtitle,
   CardText,
   CardTitle,
-  Col,
-  Row,
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import styled from 'styled-components';
 
 import CallToAction from '../../../components/CallToAction';
+import EqualHeightRow from '../../../components/EqualHeightRow';
 
-// import * as actions from '../actions';
 import * as selectors from '../selectors';
 import * as graphs from '../data/graphs';
-import SizedGraph from '../components/SizedGraph';
+import GraphOverview from '../components/GraphOverview';
 
 const GraphSection = styled.div`
-  padding: 15px;
+  padding: 15px 15px 0 15px;
 `;
 
 const ClusterOverview = ({ cluster, metrics }) => {
-  const graphOverviews = Object.keys(graphs).map(graphId => {
-    const graph = graphs[graphId];
-    return (
-      <GraphSection
-        key={graph.id}
-      >
-        <Row>
-          <Col>
-            <CardSubtitle>
-              {graph.title}
-            </CardSubtitle>
-          </Col>
-        </Row>
-        <Row>
-          <Col>{graph.description}</Col>
-        </Row>
-        <Row>
-          <SizedGraph
-            graph={graph}
-            metrics={metrics}
-            tiny
-          />
-        </Row>
-      </GraphSection>
-    );
-  });
+  const graphOverviews = Object.keys(graphs).map(graphId => (
+    <GraphOverview
+      graph={graphs[graphId]}
+      key={graphId}
+      metrics={metrics}
+    />
+  ));
 
   return (
     <Card>
@@ -76,7 +54,11 @@ const ClusterOverview = ({ cluster, metrics }) => {
         <CardText>
           {cluster.description}
         </CardText>
-        { graphOverviews }
+        <GraphSection>
+          <EqualHeightRow>
+            { graphOverviews }
+          </EqualHeightRow>
+        </GraphSection>
         <CallToAction
           block
           icon="terminal"
@@ -84,14 +66,6 @@ const ClusterOverview = ({ cluster, metrics }) => {
         >
           Access cluster
         </CallToAction>
-        {/*
-        <LinkContainer
-          onClick={onClick}
-          to={href}
-        >
-          <Button color="primary" >View available metrics</Button>
-        </LinkContainer>
-        */}
       </CardBody>
     </Card>
   );
@@ -104,7 +78,6 @@ ClusterOverview.propTypes = {
     name: PropTypes.node.isRequired,
     subtitle: PropTypes.node,
   }).isRequired,
-  // dispatch: PropTypes.func.isRequired,
   metrics: PropTypes.array.isRequired,
 };
 
