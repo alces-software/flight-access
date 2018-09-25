@@ -34,7 +34,7 @@ const LineChart = ({ data, graph, height, syncId, tiny, width }) => {
   return (
     <BaseLineChart
       data={data}
-      height={height}
+      height={height || width / 2}
       margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
       syncId={syncId}
       width={width}
@@ -65,7 +65,6 @@ LineChart.propTypes = {
 };
 
 LineChart.defaultProps = {
-  height: 300,
   width: 600,
 };
 

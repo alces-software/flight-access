@@ -38,7 +38,7 @@ const StackedAreaChart = ({ data, graph, height, syncId, tiny, width }) => {
   return (
     <BaseAreaChart
       data={data}
-      height={height}
+      height={height || width / 2}
       margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
       stackOffset="expand"
       syncId={syncId}
@@ -70,7 +70,6 @@ StackedAreaChart.propTypes = {
 };
 
 StackedAreaChart.defaultProps = {
-  height: 300,
   width: 600,
 };
 
