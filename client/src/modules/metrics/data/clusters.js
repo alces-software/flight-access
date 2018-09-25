@@ -1,11 +1,11 @@
-export const demo = {
-  id: 'demo',
+export const MEG = {
+  id: 'MEG',
   name: 'Megatron',
   description: 'On-site HPC cluster.',
 };
 
-export const pres = {
-  id: 'pres',
+export const OPT = {
+  id: 'OPT',
   name: 'Optimus',
   description: 'AWS hosted HPC cluster.',
 };
