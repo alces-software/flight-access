@@ -23,7 +23,7 @@ function toPercent(decimal, fixed = 0) {
   return `${(decimal * 100).toFixed(fixed)}%`;
 }
 
-const StackedAreaChart = ({ data, graph, height, syncId, width }) => {
+const StackedAreaChart = ({ data, graph, height, syncId, tiny, width }) => {
   const areas = graph.chartSeries.map((series) => (
     <Area
       dataKey={series.field}
@@ -44,11 +44,11 @@ const StackedAreaChart = ({ data, graph, height, syncId, width }) => {
       syncId={syncId}
       width={width}
     >
-      <XAxis dataKey={timeFormatters[graph.xAxisFormatter]} />
-      <YAxis tickFormatter={toPercent} />
-      <CartesianGrid strokeDasharray="3 3" />
-      <Tooltip />
-      <Legend />
+      { tiny || <XAxis dataKey={timeFormatters[graph.xAxisFormatter]} /> }
+      { tiny || <YAxis tickFormatter={toPercent} /> }
+      { tiny || <CartesianGrid strokeDasharray="3 3" /> }
+      { tiny || <Tooltip /> }
+      { tiny || <Legend /> }
       {areas}
     </BaseAreaChart>
   );
@@ -65,6 +65,7 @@ StackedAreaChart.propTypes = {
   }).isRequired,
   height: PropTypes.number.isRequired,
   syncId: PropTypes.string,
+  tiny: PropTypes.bool,
   width: PropTypes.number.isRequired,
 };
 

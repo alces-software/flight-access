@@ -24,7 +24,7 @@ const graphTypes = {
   stackedArea: StackedAreaChart,
 };
 
-const GraphWrapper = ({ graph, metrics, size, syncId, title }) => {
+const GraphWrapper = ({ graph, metrics, size, syncId, tiny, title }) => {
   const GraphComponent = graphTypes[graph.graphType];
   if (GraphComponent == null) {
     return (
@@ -47,6 +47,7 @@ const GraphWrapper = ({ graph, metrics, size, syncId, title }) => {
         data={metrics}
         graph={graph}
         syncId={syncId}
+        tiny={tiny}
         width={size.width}
       />
     </div>
@@ -60,6 +61,7 @@ GraphWrapper.propTypes = {
     width: PropTypes.number.isRequired,
   }).isRequired,
   syncId: PropTypes.string,
+  tiny: PropTypes.bool,
   title: PropTypes.node,
 };
 

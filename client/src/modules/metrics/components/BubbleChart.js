@@ -79,6 +79,7 @@ function parseDomain(data, field) {
 };
 
 const BubbleLine = ({
+  chartSeries,
   data,
   domain,
   field,
@@ -87,7 +88,7 @@ const BubbleLine = ({
   name,
   sizeRange,
   syncId,
-  chartSeries,
+  tiny,
   width,
   xAxisFormatter,
 }) => (
@@ -121,11 +122,15 @@ const BubbleLine = ({
       range={sizeRange}
       type="number"
     />
-    <Tooltip
-      cursor={{ strokeDasharray: '3 3' }}
-      wrapperStyle={{ zIndex: 100 }}
-    />
-    { finalLine ? <Legend /> : null }
+    {
+      tiny || (
+        <Tooltip
+          cursor={{ strokeDasharray: '3 3' }}
+          wrapperStyle={{ zIndex: 100 }}
+        />
+      )
+    }
+    { tiny && finalLine ? <Legend /> : null }
     <Scatter
       data={data} 
       fill={chartSeries.color}
@@ -148,11 +153,12 @@ BubbleLine.propTypes = {
   name: PropTypes.string.isRequired,
   sizeRange: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
   syncId: PropTypes.string,
+  tiny: PropTypes.bool,
   width: PropTypes.number.isRequired,
   xAxisFormatter: PropTypes.string.isRequired,
 };
 
-const BubbleChart = ({ data, graph, syncId, width }) => {
+const BubbleChart = ({ data, graph, syncId, tiny, width }) => {
   const chartSeries = graph.chartSeries[0];
   const field = chartSeries.field;
   const domain = parseDomain(data, field);
@@ -177,6 +183,7 @@ const BubbleChart = ({ data, graph, syncId, width }) => {
               name={line.name}
               sizeRange={sizeRange}
               syncId={syncId}
+              tiny={tiny}
               width={width}
               xAxisFormatter={graph.xAxisFormatter}
             />
@@ -196,6 +203,7 @@ BubbleChart.propTypes = {
     })).isRequired,
   }).isRequired,
   syncId: PropTypes.string,
+  tiny: PropTypes.bool,
   width: PropTypes.number.isRequired,
 };
 

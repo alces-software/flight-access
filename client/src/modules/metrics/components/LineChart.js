@@ -19,7 +19,7 @@ import {
 
 import * as timeFormatters from '../utils/timeFormatters';
 
-const LineChart = ({ data, graph, height, syncId, width }) => {
+const LineChart = ({ data, graph, height, syncId, tiny, width }) => {
   const lines = graph.chartSeries.map((series) => (
     <Line
       dataKey={series.field}
@@ -39,11 +39,11 @@ const LineChart = ({ data, graph, height, syncId, width }) => {
       syncId={syncId}
       width={width}
     >
-      <XAxis dataKey={timeFormatters[graph.xAxisFormatter]} />
-      <YAxis />
-      <CartesianGrid strokeDasharray="3 3" />
-      <Tooltip />
-      <Legend />
+      { tiny || <XAxis dataKey={timeFormatters[graph.xAxisFormatter]} /> }
+      { tiny || <YAxis /> }
+      { tiny || <CartesianGrid strokeDasharray="3 3" /> }
+      { tiny || <Tooltip /> }
+      { tiny || <Legend /> }
       {lines}
     </BaseLineChart>
   );
@@ -60,6 +60,7 @@ LineChart.propTypes = {
   }).isRequired,
   height: PropTypes.number.isRequired,
   syncId: PropTypes.string,
+  tiny: PropTypes.bool,
   width: PropTypes.number.isRequired,
 };
 
