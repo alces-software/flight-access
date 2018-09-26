@@ -7,8 +7,16 @@
  *===========================================================================*/
 import PropTypes from 'prop-types';
 import React from 'react';
+import styled from 'styled-components';
 
 // import * as timeFormatters from '../utils/timeFormatters';
+
+const Wrapper = styled.div`
+  background-color: #fff;
+  border: 1px solid #999;
+  margin: 0;
+  padding: 10;
+`;
 
 const TooltipContent = ({
   active,
@@ -22,17 +30,10 @@ const TooltipContent = ({
     const name = payload[0].name;
 
     return (
-      <div
-        style={{
-          backgroundColor: '#fff',
-          border: '1px solid #999',
-          margin: 0,
-          padding: 10
-        }}
-      >
+      <Wrapper>
         <p>{date}</p>
         <p><span>{name}: </span>{value}</p>
-      </div>
+      </Wrapper>
     );
   }
 

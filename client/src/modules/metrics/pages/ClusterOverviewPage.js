@@ -8,11 +8,16 @@
 import React from 'react';
 import { Container, Col, Row } from 'reactstrap';
 import { compose } from 'recompose';
+import styled from 'styled-components';
 
 import * as clusters from '../data/clusters';
 import EqualHeightRow from '../../../components/EqualHeightRow';
 import ClusterOverview from '../components/ClusterOverview';
 import TimeframeSelect from '../components/TimeframeSelect';
+
+const PaddedRow = styled(Row)`
+  margin-bottom: 16px;
+`;
 
 const ClusterOverviewPage = () => {
   const clusterOverviews = Object.keys(clusters).map(clusterId => {
@@ -31,15 +36,11 @@ const ClusterOverviewPage = () => {
 
   return (
     <Container fluid >
-      <Row
-        style={{
-          marginBottom: '16px'
-        }}
-      >
+      <PaddedRow>
         <Col>
           <TimeframeSelect />
         </Col>
-      </Row>
+      </PaddedRow>
       <EqualHeightRow>
         {clusterOverviews}
       </EqualHeightRow>
