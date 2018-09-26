@@ -19,16 +19,18 @@ import SizedGraph from '../components/SizedGraph';
 import TimeframeSelect from '../components/TimeframeSelect';
 
 // eslint-disable-next-line react/prop-types
-let GraphWrapper = ({ graph, cluster, metrics }) => (
+let GraphWrapper = ({ graph, cluster, metrics, yAxisDomain }) => (
   <SizedGraph
     graph={graph}
     metrics={metrics}
     syncId="someValue"
     title={cluster.name}
+    yAxisDomain={yAxisDomain}
   />
 );
 GraphWrapper = connect(createStructuredSelector({
   metrics: selectors.clusterMetrics,
+  yAxisDomain: selectors.yAxisDomain,
 }))(GraphWrapper);
 
 const ComparePage = ({ comparisons }) => {

@@ -19,7 +19,7 @@ import {
 
 import * as timeFormatters from '../utils/timeFormatters';
 
-const BarChart = ({ data, graph, height, syncId, tiny, width }) => {
+const BarChart = ({ data, graph, height, syncId, tiny, width, yAxisDomain }) => {
   const bars = graph.chartSeries.map((series) => (
     <Bar
       dataKey={series.field}
@@ -29,9 +29,14 @@ const BarChart = ({ data, graph, height, syncId, tiny, width }) => {
     />
   ));
 
-  const domain = graph.yAxis && graph.yAxis.domain ?
-    graph.yAxis.domain :
-    ['auto', 'auto'];
+  let domain;
+  if (graph.yAxis && graph.yAxis.domain) {
+    domain = graph.yAxis.domain;
+  } else if ( yAxisDomain ) {
+    domain = yAxisDomain;
+  } else {
+    domain = ['auto', 'auto'];
+  }
 
   return (
     <BaseBarChart
@@ -67,6 +72,7 @@ BarChart.propTypes = {
   syncId: PropTypes.string,
   tiny: PropTypes.bool,
   width: PropTypes.number.isRequired,
+  yAxisDomain: PropTypes.array,
 };
 
 BarChart.defaultProps = {

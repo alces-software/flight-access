@@ -16,9 +16,11 @@ import {
 import styled from 'styled-components';
 import { LinkContainer } from 'flight-reactware';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
 import SizedGraph from '../components/SizedGraph';
 import * as actions from '../actions';
+import * as selectors from '../selectors';
 
 
 const SpacedCol = styled(Col)`
@@ -33,7 +35,7 @@ const SpacedCardText = styled(CardText)`
 `;
 
 
-const GraphOverview = ({ dispatch, graph, metrics }) => {
+const GraphOverview = ({ dispatch, graph, metrics, yAxisDomain }) => {
   const href = `/graph/${graph.id}`;
   const onClick = () => dispatch(actions.graphSelected(graph.id));
 
@@ -49,6 +51,7 @@ const GraphOverview = ({ dispatch, graph, metrics }) => {
         graph={graph}
         metrics={metrics}
         tiny
+        yAxisDomain={yAxisDomain}
       />
       <LinkContainer
         onClick={onClick}
@@ -68,6 +71,9 @@ GraphOverview.propTypes = {
     title: PropTypes.node.isRequired,
   }).isRequired,
   metrics: PropTypes.array.isRequired,
+  yAxisDomain: PropTypes.array,
 };
 
-export default connect()(GraphOverview);
+export default connect(createStructuredSelector({
+  yAxisDomain: selectors.yAxisDomain,
+}))(GraphOverview);

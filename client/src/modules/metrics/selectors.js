@@ -78,6 +78,26 @@ export const clusterMetrics = createSelector(
   },
 );
 
+export const yAxisDomain = createSelector(
+  (state, params) => params.graph || selectedGraph(state),
+
+  (graph) => {
+    const fields = graph.chartSeries.map(s => s.field);
+    const field = fields[0];
+    let flattenedMetrics = [];
+    Object.keys(metrics).forEach((clusterId) => {
+      flattenedMetrics = [
+        ...flattenedMetrics,
+        ...metrics[clusterId].map(m => m[field]),
+      ];
+    });
+    return [
+      Math.min.apply(null, flattenedMetrics),
+      Math.max.apply(null, flattenedMetrics),
+    ];
+  },
+);
+
 // export const selectedComparrison = createSelector(
 //   comparisonData,
 
