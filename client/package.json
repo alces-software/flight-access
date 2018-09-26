@@ -12,7 +12,7 @@
     "dompurify": "^1.0.8",
     "express": "^4.15.3",
     "flight-reactware": "https://s3-eu-west-1.amazonaws.com/alces-flight/FlightReactware/0.1.57/flight-reactware.tgz",
-    "flight-tutorials-client": "https://s3-eu-west-1.amazonaws.com/alces-flight/FlightTutorials/0.1.30/flight-tutorials-client.tgz",
+    "flight-tutorials-client": "https://s3-eu-west-1.amazonaws.com/alces-flight/FlightTutorials/0.1.31/flight-tutorials-client.tgz",
     "history": "^4.6.1",
     "ignore-styles": "^5.0.1",
     "marked": "^0.5.0",
