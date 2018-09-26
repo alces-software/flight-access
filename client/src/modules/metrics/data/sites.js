@@ -1,4 +1,4 @@
-export const bigv = {
-  id: 'bigv',
-  name: 'The University of Big V',
+export const demo = {
+  id: 'demo',
+  name: 'Demo site',
 };
