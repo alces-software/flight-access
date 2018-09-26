@@ -36,12 +36,12 @@ export const busyness = {
 export const gpusAvailable = {
   id: 'gpusAvailable',
   graphType: 'bar',
-  title: "GPUs available",
-  description: "Compare the available GPUs of your organization's clusters.",
+  title: "GPUs in use",
+  description: "Compare the number of GPUs in use for your organization's clusters.",
   chartSeries: [
     {
-      field: 'gpus_available',
-      name: 'Available GPUs',
+      field: 'gpus_in_use',
+      name: 'GPUs in use',
       color: '#ff7f0e'
     }
   ],
@@ -56,7 +56,7 @@ export const waitTime = {
   chartSeries: [
     {
       field: 'job_wait_time',
-      name: 'Available GPUs',
+      name: 'Job wait time',
       color: '#ff7f0e'
     }
   ],
@@ -66,12 +66,12 @@ export const waitTime = {
 export const availableStorage = {
   id: 'availableStorage',
   graphType: 'bar',
-  title: "Available cluster storage",
-  description: "The shared cluster storage available in GiBs.",
+  title: "Cluster storage in use",
+  description: "The shared cluster storage in use in GiBs.",
   chartSeries: [
     {
-      field: 'available_storage',
-      name: 'Available GPUs',
+      field: 'storage_in_use',
+      name: 'Storage in use',
       color: '#ff7f0e'
     }
   ],

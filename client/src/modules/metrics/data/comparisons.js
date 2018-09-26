@@ -26,7 +26,7 @@ export const foo = {
   description: "Compare the available GPUs of your organization's clusters.",
   chartSeries: [
     {
-      field: 'gpus_available',
+      field: 'gpus_in_use',
       name: 'Available GPUs',
       color: '#ff7f0e'
     }
