@@ -8,7 +8,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
-  Button,
   CardSubtitle,
   CardText,
   CardLink,
@@ -51,14 +50,12 @@ const GraphOverview = ({ dispatch, graph, metrics }) => {
         metrics={metrics}
         tiny
       />
-      <CardLink>
-        <LinkContainer
-          onClick={onClick}
-          to={href}
-        >
-          <Button color="link" >More detail</Button>
-        </LinkContainer>
-      </CardLink>
+      <LinkContainer
+        onClick={onClick}
+        to={href}
+      >
+        <CardLink>More detail</CardLink>
+      </LinkContainer>
     </SpacedCol>
   );
 };
