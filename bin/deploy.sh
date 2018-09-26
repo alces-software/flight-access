@@ -44,7 +44,7 @@ usage() {
     echo -e "      --help\t\tShow this help message"
 }
 
-REMOTE=dokku-staging
+REMOTE=client-staging
 COMMIT_ISH=HEAD
 
 parse_arguments() {
@@ -53,12 +53,12 @@ parse_arguments() {
 
         case $key in
             --production)
-                REMOTE=dokku
+                REMOTE=client
                 shift
                 ;;
 
             --test)
-                REMOTE=dokku-test
+                REMOTE=client-test
                 shift
                 ;;
 
