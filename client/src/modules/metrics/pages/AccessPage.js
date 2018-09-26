@@ -15,10 +15,7 @@ import { createStructuredSelector } from 'reselect';
 import styled from 'styled-components';
 
 import * as selectors from '../selectors';
-
-const Terminal = () => (
-  <div>XXX Add terminal here.</div>
-);
+import Terminal from '../components/Terminal';
 
 const PaddedContainer = styled(Container)`
   padding-top: 15px;
@@ -30,11 +27,13 @@ const env = {
 };
 
 const AccessPage = ({ cluster }) => {
+  const { webTerminal } = cluster;
+
   return (
     <PaddedContainer fluid >
       <Terminal
-        socketIOPath="XXX"
-        socketIOUrl="XXX"
+        socketIOPath={webTerminal.socketIO.path}
+        socketIOUrl={webTerminal.url}
         termProps={{
           env: env,
         }}
