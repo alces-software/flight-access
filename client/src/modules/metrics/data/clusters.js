@@ -3,9 +3,9 @@ export const MEG = {
   name: 'Megatron',
   description: 'On-site HPC cluster.',
 
-  ipAddress: '34.243.19.155',
+  ipAddress: "34.245.235.57",
   "webTerminal": {
-    "url": "https://megatron-dc09bb3f.cloud.alces.network/pty",
+    "url": "https://megatron-7453a672.cloud.alces.network/pty",
     "socketIO": {
       "path": "/terminal/socket.io"
     }
@@ -17,9 +17,9 @@ export const OPT = {
   name: 'Optimus',
   description: 'AWS hosted HPC cluster.',
 
-  ipAddress: '34.245.15.130',
+  ipAddress: '52.16.166.46',
   "webTerminal": {
-    "url": "https://optimus-c8ff83c1.cloud.alces.network/pty",
+    "url": "https://optimus-3a45d492.cloud.alces.network/pty",
     "socketIO": {
       "path": "/terminal/socket.io"
     }
